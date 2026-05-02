@@ -15,21 +15,20 @@ class VipClient extends Model
         'brand_id',
         'full_name',
         'slug',
-        'membership_code',
-        'email',
         'phone',
+        'email',
+        'membership_code',
+        'tier',
         'notes',
-        'profile_data',
+        'perks',
         'is_active',
-        'shared_at',
     ];
 
     protected function casts(): array
     {
         return [
-            'profile_data' => 'array',
+            'perks' => 'array',
             'is_active' => 'boolean',
-            'shared_at' => 'datetime',
         ];
     }
 

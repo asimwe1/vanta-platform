@@ -12,20 +12,15 @@ class VisitLog extends Model
 
     protected $fillable = [
         'vip_client_id',
-        'visited_at',
-        'ip_address',
         'user_agent',
-        'referrer',
-        'metadata',
-        'is_unique_visit',
+        'ip_address',
+        'visited_at',
     ];
 
     protected function casts(): array
     {
         return [
             'visited_at' => 'datetime',
-            'metadata' => 'array',
-            'is_unique_visit' => 'boolean',
         ];
     }
 

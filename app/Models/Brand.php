@@ -13,15 +13,19 @@ class Brand extends Model
     protected $fillable = [
         'name',
         'slug',
+        'logo_path',
+        'primary_color',
+        'accent_color',
+        'whatsapp_number',
+        'email',
+        'website',
         'description',
-        'settings',
         'is_active',
     ];
 
     protected function casts(): array
     {
         return [
-            'settings' => 'array',
             'is_active' => 'boolean',
         ];
     }
