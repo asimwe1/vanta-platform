@@ -18,7 +18,15 @@ class BrandResource extends Resource
 {
     protected static ?string $model = Brand::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingStorefront;
+
+    protected static ?string $modelLabel = 'brand house';
+
+    protected static ?string $pluralModelLabel = 'Brand houses';
+
+    protected static ?string $navigationLabel = 'Brand houses';
+
+    protected static ?int $navigationSort = 20;
 
     public static function form(Schema $schema): Schema
     {
