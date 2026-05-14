@@ -8,6 +8,8 @@ Set these in `asimwe1/vanta-platform` under `Settings -> Secrets and variables -
 
 - `DEPLOY_SSH_KEY`: private key allowed to SSH into the server
 
+Do not commit private keys, production `.env` files, passwords, API tokens, SMTP credentials, or Cloudflare tokens. Keep those values in GitHub Secrets or in `/var/www/vanta-platform/shared/.env` on the server.
+
 The workflow already targets:
 
 - host: `41.186.186.162`
@@ -32,6 +34,7 @@ Important:
 
 - Do not point Nginx at another app's directory.
 - Do not reuse another app's `.env`, database, storage, queue worker, or PHP-FPM pool.
+- Do not remove or replace existing Nginx sites. Add `vanta.aphezis.com` beside the existing domains so current production apps continue serving normally.
 - If the server uses PHP 8.5 or 8.3 instead of 8.4, change the `fastcgi_pass` socket in the Nginx config.
 
 Recommended commands on the server:
@@ -45,6 +48,25 @@ systemctl reload nginx
 ```
 
 The deployment workflow creates `.env` on first deploy with `APP_URL=https://vanta.aphezis.com` and SQLite storage under the app's shared folder. Edit `/var/www/vanta-platform/shared/.env` on the server for production mail, queue, and database settings.
+
+Use `.env.production.example` as a checklist only. It intentionally contains placeholders and must not contain real secrets.
+
+## Release and Integration Management
+
+Two GitHub Actions workflows manage integration and releases:
+
+- `Integration checks`: runs Composer validation, migrations, Laravel tests, Vite build, and route boot checks for pull requests.
+- `Release management`: manually creates annotated version tags and GitHub Releases for the private platform.
+
+To create a private release:
+
+1. Open GitHub Actions.
+2. Run `Release management`.
+3. Enter a semantic version such as `v1.0.0`.
+4. Use `dev-branch` or a specific commit SHA as the target.
+5. Add release notes for what changed.
+
+Tags are version markers. Deployment still happens from `dev-branch` through `Build and deploy Vanta`, so you can separate production deployment from private release bookkeeping.
 
 ## Cloudflare
 
