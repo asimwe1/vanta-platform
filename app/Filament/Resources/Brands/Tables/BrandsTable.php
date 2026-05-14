@@ -29,6 +29,24 @@ class BrandsTable
                     ->copyable()
                     ->badge()
                     ->color('gray'),
+                TextColumn::make('subscription_tier')
+                    ->label('Retainer')
+                    ->formatStateUsing(fn (?string $state): string => str($state ?: 'tier_1')->replace('_', ' ')->title())
+                    ->badge()
+                    ->color('warning'),
+                TextColumn::make('vip_capacity')
+                    ->label('Capacity')
+                    ->description(fn ($record): string => $record->vipClients()->count() . ' VIPs active')
+                    ->sortable(),
+                TextColumn::make('card_stock_remaining')
+                    ->label('Cards')
+                    ->badge()
+                    ->color(fn ($state): string => $state < 5 ? 'danger' : 'success')
+                    ->sortable(),
+                TextColumn::make('subscription_end_date')
+                    ->label('SLA ends')
+                    ->date()
+                    ->sortable(),
                 IconColumn::make('is_active')
                     ->label('Live')
                     ->boolean(),

@@ -13,6 +13,8 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class BrandResource extends Resource
 {
@@ -38,6 +40,18 @@ class BrandResource extends Resource
         return BrandsTable::configure($table);
     }
 
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery();
+        $user = auth()->user();
+
+        if ($user && ! $user->isSuperAdmin()) {
+            $query->whereKey($user->brand_id);
+        }
+
+        return $query;
+    }
+
     public static function getRelations(): array
     {
         return [
@@ -52,5 +66,22 @@ class BrandResource extends Resource
             'create' => CreateBrand::route('/create'),
             'edit' => EditBrand::route('/{record}/edit'),
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return auth()->user()?->isSuperAdmin() ?? false;
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        $user = auth()->user();
+
+        if (! $user) {
+            return false;
+        }
+
+        return $user->isSuperAdmin()
+            || ($user->brand_id === $record->getKey() && ! $user->hasExpiredBrandSubscription());
     }
 }
