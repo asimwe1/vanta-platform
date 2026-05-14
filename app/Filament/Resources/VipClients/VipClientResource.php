@@ -18,7 +18,15 @@ class VipClientResource extends Resource
 {
     protected static ?string $model = VipClient::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedUserGroup;
+
+    protected static ?string $modelLabel = 'VIP profile';
+
+    protected static ?string $pluralModelLabel = 'VIP profiles';
+
+    protected static ?string $navigationLabel = 'VIP profiles';
+
+    protected static ?int $navigationSort = 10;
 
     public static function form(Schema $schema): Schema
     {
