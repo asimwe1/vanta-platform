@@ -47,7 +47,16 @@ nginx -t
 systemctl reload nginx
 ```
 
-The deployment workflow creates `.env` on first deploy with `APP_URL=https://vanta.aphezis.com` and SQLite storage under the app's shared folder. Edit `/var/www/vanta-platform/shared/.env` on the server for production mail, queue, and database settings.
+The deployment workflow creates `.env` on first deploy if one does not exist. For production, use MySQL on the server and keep its credentials only in `/var/www/vanta-platform/shared/.env`.
+
+Current production database:
+
+- connection: `mysql`
+- host: `127.0.0.1`
+- database: `vanta_platform`
+- user: `vanta_platform`
+
+Do not commit the MySQL password. Edit `/var/www/vanta-platform/shared/.env` on the server for production mail, queue, and database settings.
 
 Use `.env.production.example` as a checklist only. It intentionally contains placeholders and must not contain real secrets.
 
