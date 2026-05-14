@@ -22,6 +22,9 @@ class VipClient extends Model
         'notes',
         'perks',
         'is_active',
+        'otp_code',
+        'otp_expires_at',
+        'last_login_at',
     ];
 
     protected function casts(): array
@@ -29,6 +32,8 @@ class VipClient extends Model
         return [
             'perks' => 'array',
             'is_active' => 'boolean',
+            'otp_expires_at' => 'datetime',
+            'last_login_at' => 'datetime',
         ];
     }
 
@@ -40,5 +45,10 @@ class VipClient extends Model
     public function visitLogs(): HasMany
     {
         return $this->hasMany(VisitLog::class);
+    }
+
+    public function serviceRequests(): HasMany
+    {
+        return $this->hasMany(ServiceRequest::class);
     }
 }
