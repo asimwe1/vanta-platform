@@ -19,10 +19,18 @@ class ListVipClients extends ListRecords
 
     protected function getHeaderActions(): array
     {
+        $user = auth()->user();
+        $brand = $user && ! $user->isSuperAdmin() ? $user->brand : null;
+        $capacityReached = $brand
+            && filled($brand->vip_capacity)
+            && $brand->vipClients()->count() >= $brand->vip_capacity;
+
         return [
             CreateAction::make()
                 ->label('New VIP profile')
-                ->icon(Heroicon::Plus),
+                ->icon(Heroicon::Plus)
+                ->disabled($capacityReached)
+                ->tooltip($capacityReached ? 'Capacity reached. Contact APHEZIS to upgrade this retainer tier.' : null),
         ];
     }
 }

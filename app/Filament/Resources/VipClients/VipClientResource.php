@@ -13,6 +13,8 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 
 class VipClientResource extends Resource
 {
@@ -38,11 +40,38 @@ class VipClientResource extends Resource
         return VipClientsTable::configure($table);
     }
 
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery()->with('brand');
+        $user = auth()->user();
+
+        if ($user && ! $user->isSuperAdmin()) {
+            $query->where('brand_id', $user->brand_id);
+        }
+
+        return $query;
+    }
+
     public static function getRelations(): array
     {
         return [
             //
         ];
+    }
+
+    public static function canCreate(): bool
+    {
+        return ! (auth()->user()?->hasExpiredBrandSubscription() ?? false);
+    }
+
+    public static function canEdit(Model $record): bool
+    {
+        return ! (auth()->user()?->hasExpiredBrandSubscription() ?? false);
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return ! (auth()->user()?->hasExpiredBrandSubscription() ?? false);
     }
 
     public static function getPages(): array

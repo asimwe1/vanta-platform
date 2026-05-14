@@ -15,6 +15,8 @@ class VipClientForm
 {
     public static function configure(Schema $schema): Schema
     {
+        $user = auth()->user();
+
         return $schema->components([
             Section::make('Client identity')
                 ->description('Keep the public-facing profile precise, polished, and easy for the concierge team to trust.')
@@ -24,6 +26,9 @@ class VipClientForm
                     Select::make('brand_id')
                         ->label('Brand house')
                         ->options(fn () => Brand::query()->orderBy('name')->pluck('name', 'id'))
+                        ->default($user && ! $user->isSuperAdmin() ? $user->brand_id : null)
+                        ->disabled(fn () => $user && ! $user->isSuperAdmin())
+                        ->dehydrated()
                         ->searchable()
                         ->preload()
                         ->required(),
