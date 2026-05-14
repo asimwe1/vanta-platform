@@ -26,6 +26,7 @@ jobs:
       DEPLOY_USER: root
       DEPLOY_PATH: /var/www/vanta-platform
       RELEASE_ARCHIVE: vanta-platform-${{ github.sha }}.tar.gz
+      RELEASE_ARCHIVE_PATH: /tmp/vanta-platform-${{ github.sha }}.tar.gz
 
     steps:
       - name: Checkout
@@ -63,7 +64,7 @@ jobs:
             --exclude='database/database.sqlite' \
             --exclude='public/hot' \
             --exclude='storage/logs/*.log' \
-            -czf "$RELEASE_ARCHIVE" .
+            -czf "$RELEASE_ARCHIVE_PATH" .
 
       - name: Configure SSH
         run: |
@@ -75,7 +76,7 @@ jobs:
       - name: Upload release archive
         run: |
           scp -i ~/.ssh/vanta_deploy_key -P "$DEPLOY_PORT" \
-            "$RELEASE_ARCHIVE" \
+            "$RELEASE_ARCHIVE_PATH" \
             "$DEPLOY_USER@$DEPLOY_HOST:/tmp/$RELEASE_ARCHIVE"
 
       - name: Deploy release atomically
