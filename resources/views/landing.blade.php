@@ -20,8 +20,8 @@
                     <span class="text-sm font-medium uppercase tracking-[0.28em] text-zinc-200">Vanta</span>
                 </a>
                 <nav class="flex items-center gap-3">
-                    <a href="{{ route('vip.profile.demo') }}" class="hidden text-sm text-zinc-300 transition hover:text-white sm:inline">VIP profile</a>
-                    <a href="{{ url('/admin/login') }}" class="border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:border-amber-300 hover:text-amber-200">Admin</a>
+                    <a href="#plans" class="hidden text-sm text-zinc-300 transition hover:text-white sm:inline">Plans</a>
+                    <a href="#hardware" class="border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:border-amber-300 hover:text-amber-200">Card program</a>
                 </nav>
             </header>
 
@@ -35,8 +35,8 @@
                         Manage private client records, signed VIP access, email OTP confirmations, and metal card procurement from one managed APHEZIS infrastructure.
                     </p>
                     <div class="mt-9 flex flex-col gap-3 sm:flex-row">
-                        <a href="{{ url('/admin/login') }}" class="bg-amber-300 px-5 py-3 text-center text-sm font-semibold text-zinc-950 transition hover:bg-amber-200">Open admin</a>
-                        <a href="{{ route('vip.profile.demo') }}" class="border border-white/20 px-5 py-3 text-center text-sm font-semibold text-white transition hover:border-white/50">View public profile</a>
+                        <a href="#plans" class="bg-amber-300 px-5 py-3 text-center text-sm font-semibold text-zinc-950 transition hover:bg-amber-200">Explore plans</a>
+                        <a href="#hardware" class="border border-white/20 px-5 py-3 text-center text-sm font-semibold text-white transition hover:border-white/50">See card program</a>
                     </div>
                 </div>
 
@@ -95,7 +95,7 @@
             </div>
         </section>
 
-        <section class="relative z-10 border-t border-white/10 bg-zinc-950 px-6 py-20">
+        <section id="plans" class="relative z-10 border-t border-white/10 bg-zinc-950 px-6 py-20">
             <div class="mx-auto max-w-6xl">
                 <p class="text-xs font-semibold uppercase tracking-[0.34em] text-amber-200">SLA and security subscription</p>
                 <div class="mt-4 grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
@@ -128,7 +128,7 @@
             </div>
         </section>
 
-        <section class="relative z-10 border-t border-white/10 bg-zinc-950 px-6 py-20">
+        <section id="hardware" class="relative z-10 border-t border-white/10 bg-zinc-950 px-6 py-20">
             <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1fr_0.9fr] lg:items-center">
                 <div>
                     <p class="text-xs font-semibold uppercase tracking-[0.34em] text-amber-200">Hardware procurement</p>

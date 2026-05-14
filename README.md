@@ -93,7 +93,7 @@ DB_HOST=127.0.0.1
 DB_PORT=5432
 DB_DATABASE=vanta
 DB_USERNAME=postgres
-DB_PASSWORD=postgres
+DB_PASSWORD=your_local_database_password
 
 CACHE_STORE=file
 QUEUE_CONNECTION=database
