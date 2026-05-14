@@ -1,0 +1,86 @@
+name: Build and deploy Vanta
+
+on:
+  push:
+    branches:
+      - dev-branch
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: vanta-production
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    name: Build release and deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    env:
+      APP_DOMAIN: vanta.aphezis.com
+      DEPLOY_HOST: 41.186.186.162
+      DEPLOY_PORT: 222
+      DEPLOY_USER: root
+      DEPLOY_PATH: /var/www/vanta-platform
+      RELEASE_ARCHIVE: vanta-platform-${{ github.sha }}.tar.gz
+      RELEASE_ARCHIVE_PATH: /tmp/vanta-platform-${{ github.sha }}.tar.gz
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: bcmath, ctype, curl, dom, fileinfo, filter, iconv, mbstring, openssl, pdo, pdo_sqlite, sqlite3, tokenizer, xml
+          coverage: none
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install PHP dependencies
+        run: composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader --no-progress
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Build frontend assets
+        run: npm run build
+
+      - name: Create release archive
+        run: |
+          tar \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='node_modules' \
+            --exclude='.env' \
+            --exclude='database/database.sqlite' \
+            --exclude='public/hot' \
+            --exclude='storage/logs/*.log' \
+            -czf "$RELEASE_ARCHIVE_PATH" .
+
+      - name: Configure SSH
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/vanta_deploy_key
+          chmod 600 ~/.ssh/vanta_deploy_key
+          ssh-keyscan -p "$DEPLOY_PORT" "$DEPLOY_HOST" >> ~/.ssh/known_hosts
+
+      - name: Upload release archive
+        run: |
+          scp -i ~/.ssh/vanta_deploy_key -P "$DEPLOY_PORT" \
+            "$RELEASE_ARCHIVE_PATH" \
+            "$DEPLOY_USER@$DEPLOY_HOST:/tmp/$RELEASE_ARCHIVE"
+
+      - name: Deploy release atomically
+        run: |
+          ssh -i ~/.ssh/vanta_deploy_key -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" \
+            "APP_PATH='$DEPLOY_PATH' APP_DOMAIN='$APP_DOMAIN' RELEASE_ARCHIVE='/tmp/$RELEASE_ARCHIVE' GITHUB_SHA='${{ github.sha }}' bash -s" \
+            < scripts/deploy-remote.sh
