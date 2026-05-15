@@ -21,7 +21,7 @@
                 </a>
                 <nav class="flex items-center gap-3">
                     <a href="#plans" class="hidden text-sm text-zinc-300 transition hover:text-white sm:inline">Plans</a>
-                    <a href="#hardware" class="border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:border-amber-300 hover:text-amber-200">Card program</a>
+                    <a href="{{ route('cards.index') }}" class="border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:border-amber-300 hover:text-amber-200">Card designs</a>
                 </nav>
             </header>
 
@@ -36,7 +36,7 @@
                     </p>
                     <div class="mt-9 flex flex-col gap-3 sm:flex-row">
                         <a href="#plans" class="bg-amber-300 px-5 py-3 text-center text-sm font-semibold text-zinc-950 transition hover:bg-amber-200">Explore plans</a>
-                        <a href="#hardware" class="border border-white/20 px-5 py-3 text-center text-sm font-semibold text-white transition hover:border-white/50">See card program</a>
+                        <a href="{{ route('cards.index') }}" class="border border-white/20 px-5 py-3 text-center text-sm font-semibold text-white transition hover:border-white/50">Explore card designs</a>
                     </div>
                 </div>
 
@@ -136,6 +136,7 @@
                     <p class="mt-5 text-base leading-8 text-zinc-300">
                         Brands can order replenishment cards from the command center when stock runs low. Standard finishes use fixed pricing, while custom laser etching, artwork, and special fabrication move through a manual quote.
                     </p>
+                    <a href="{{ route('cards.index') }}" class="mt-7 inline-flex bg-amber-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-amber-200">Explore card designs</a>
                     <div class="mt-8 grid gap-4 text-sm text-zinc-400 sm:grid-cols-2">
                         <p><span class="text-zinc-100">Standard designs</span><br>Matte Black, Brushed Gold, and Graphite Steel at a fixed card rate.</p>
                         <p><span class="text-zinc-100">Custom design requests</span><br>Upload artwork, request a finish, and receive a quoted production price.</p>
