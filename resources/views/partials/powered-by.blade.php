@@ -8,9 +8,9 @@
 
 <div
     @if ($isFilament)
-        style="padding: 1.25rem 1rem; text-align: center; color: #a1a1aa; font-size: 0.78rem;"
+        style="padding: 0; text-align: left; color: #d4d4d8; font-size: 0.76rem; letter-spacing: 0;"
     @else
-        class="text-xs text-zinc-500"
+        class="text-xs text-zinc-400"
     @endif
 >
     Powered by
