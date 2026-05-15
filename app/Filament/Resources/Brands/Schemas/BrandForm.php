@@ -30,6 +30,12 @@ class BrandForm
                         ->label('Brand name')
                         ->placeholder('Vanta Atelier')
                         ->prefixIcon(Heroicon::OutlinedSparkles)
+                        ->live(onBlur: true)
+                        ->afterStateUpdated(function ($state, $set, $get): void {
+                            if (blank($get('brand_admin_name'))) {
+                                $set('brand_admin_name', filled($state) ? $state . ' Admin' : null);
+                            }
+                        })
                         ->required()
                         ->maxLength(255),
                     TextInput::make('slug')
@@ -52,6 +58,28 @@ class BrandForm
                         ->default('general')
                         ->required()
                         ->helperText('Used to suggest the right default request fields.'),
+                    TextInput::make('email')
+                        ->label('Brand email')
+                        ->email()
+                        ->placeholder('manager@example.com')
+                        ->prefixIcon(Heroicon::OutlinedEnvelope)
+                        ->live(onBlur: true)
+                        ->afterStateUpdated(function ($state, $set, $get): void {
+                            if (blank($get('brand_admin_email'))) {
+                                $set('brand_admin_email', $state);
+                            }
+                        })
+                        ->helperText('Used as the default admin inbox for Vanta access.'),
+                    TextInput::make('whatsapp_number')
+                        ->label('WhatsApp number')
+                        ->tel()
+                        ->prefixIcon(Heroicon::OutlinedChatBubbleLeftRight)
+                        ->maxLength(40),
+                    TextInput::make('website')
+                        ->label('Website')
+                        ->url()
+                        ->prefixIcon(Heroicon::OutlinedGlobeAlt)
+                        ->maxLength(255),
                     TextInput::make('primary_color')
                         ->label('Primary accent')
                         ->placeholder('#BFA46F')
@@ -172,7 +200,8 @@ class BrandForm
                 ->schema([
                     Toggle::make('create_brand_admin')
                         ->label('Create or update brand admin')
-                        ->default(false)
+                        ->default(true)
+                        ->helperText('Creates the private dashboard user for this brand. The account is scoped to this brand only.')
                         ->dehydrated(),
                     Toggle::make('send_brand_admin_password')
                         ->label('Email a new password')
@@ -182,12 +211,15 @@ class BrandForm
                     TextInput::make('brand_admin_name')
                         ->label('Admin name')
                         ->placeholder('Brand manager')
+                        ->default(fn ($get): ?string => filled($get('name')) ? $get('name') . ' Admin' : null)
                         ->required(fn ($get): bool => (bool) $get('create_brand_admin'))
                         ->maxLength(255)
                         ->dehydrated(),
                     TextInput::make('brand_admin_email')
                         ->label('Admin email')
                         ->email()
+                        ->default(fn ($get): ?string => $get('email'))
+                        ->helperText('The welcome email includes the generated temporary password.')
                         ->required(fn ($get): bool => (bool) $get('create_brand_admin'))
                         ->maxLength(255)
                         ->dehydrated(),

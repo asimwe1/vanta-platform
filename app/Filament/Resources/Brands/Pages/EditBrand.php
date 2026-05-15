@@ -12,6 +12,7 @@ use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Support\Icons\Heroicon;
 use Illuminate\Contracts\Support\Htmlable;
+use Throwable;
 
 class EditBrand extends EditRecord
 {
@@ -75,6 +76,30 @@ class EditBrand extends EditRecord
 
     protected function afterSave(): void
     {
-        BrandAdminProvisioner::provision($this->record, $this->brandAdminAccess);
+        try {
+            $result = BrandAdminProvisioner::provision($this->record, $this->brandAdminAccess);
+        } catch (Throwable $exception) {
+            report($exception);
+
+            Notification::make()
+                ->danger()
+                ->title('Brand admin email was not sent')
+                ->body('The brand was saved, but the welcome email failed. Check the mail settings, then resend the admin password.')
+                ->send();
+
+            return;
+        }
+
+        if (! $result) {
+            return;
+        }
+
+        Notification::make()
+            ->success()
+            ->title($result['created'] ? 'Brand admin created' : 'Brand admin updated')
+            ->body($result['mailed']
+                ? 'The Vanta welcome email was sent to ' . $result['email'] . ($result['mailer'] === 'log' ? '. MAIL_MAILER is log, so it was written to the Laravel log instead of a real inbox.' : '.')
+                : 'The brand admin account was updated without sending a new password.')
+            ->send();
     }
 }
