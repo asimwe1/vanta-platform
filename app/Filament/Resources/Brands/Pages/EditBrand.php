@@ -12,6 +12,7 @@ use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Support\Icons\Heroicon;
 use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Support\Facades\URL;
 use Throwable;
 
 class EditBrand extends EditRecord
@@ -22,12 +23,27 @@ class EditBrand extends EditRecord
 
     public function getTitle(): string|Htmlable
     {
-        return 'Refine brand house';
+        return auth()->user()?->isSuperAdmin() ? 'Refine brand house' : 'Brand details';
     }
 
     protected function getHeaderActions(): array
     {
+        if (! (auth()->user()?->isSuperAdmin() ?? false)) {
+            return [
+                Action::make('publicView')
+                    ->label('Public view')
+                    ->icon(Heroicon::OutlinedEye)
+                    ->url(fn (): string => $this->getPublicPreviewUrl())
+                    ->openUrlInNewTab(),
+            ];
+        }
+
         return [
+            Action::make('publicView')
+                ->label('Public view')
+                ->icon(Heroicon::OutlinedEye)
+                ->url(fn (): string => $this->getPublicPreviewUrl())
+                ->openUrlInNewTab(),
             Action::make('applyTemplate')
                 ->label('Apply category template')
                 ->icon(Heroicon::OutlinedSparkles)
@@ -51,6 +67,27 @@ class EditBrand extends EditRecord
         ];
     }
 
+    protected function getPublicPreviewUrl(): string
+    {
+        $vipClient = $this->record->vipClients()
+            ->where('is_active', true)
+            ->oldest()
+            ->first();
+
+        if (! $vipClient) {
+            return route('vip.profile.demo');
+        }
+
+        return URL::temporarySignedRoute(
+            'vip.profile.brand.show',
+            now()->addMinutes(30),
+            [
+                'brandSlug' => $this->record->slug,
+                'vipSlug' => $vipClient->slug,
+            ],
+        );
+    }
+
     protected function getSaveFormAction(): Action
     {
         return parent::getSaveFormAction()
@@ -65,6 +102,15 @@ class EditBrand extends EditRecord
             'primary' => $data['primary_color'] ?? '#BFA46F',
             'accent' => $data['accent_color'] ?? '#111111',
         ];
+
+        if (! (auth()->user()?->isSuperAdmin() ?? false)) {
+            $data['subscription_tier'] = $this->record->subscription_tier;
+            $data['subscription_status'] = $this->record->subscription_status;
+            $data['vip_capacity'] = $this->record->vip_capacity;
+            $data['data_retention_days'] = $this->record->data_retention_days;
+            $data['subscription_end_date'] = $this->record->subscription_end_date;
+            $data['card_stock_remaining'] = $this->record->card_stock_remaining;
+        }
 
         $data['subscription_tier'] ??= 'tier_1';
         $data['vip_capacity'] ??= SubscriptionTiers::capacityFor($data['subscription_tier']) ?? 500;

@@ -12,13 +12,31 @@ class ListBrands extends ListRecords
 {
     protected static string $resource = BrandResource::class;
 
+    public function mount(): void
+    {
+        parent::mount();
+
+        $user = auth()->user();
+
+        if ($user && ! $user->isSuperAdmin() && $user->brand_id !== null) {
+            $this->redirect(
+                BrandResource::getUrl('edit', ['record' => $user->brand_id]),
+                navigate: true,
+            );
+        }
+    }
+
     public function getTitle(): string|Htmlable
     {
-        return 'Brand houses';
+        return auth()->user()?->isSuperAdmin() ? 'Brand houses' : 'Brand details';
     }
 
     protected function getHeaderActions(): array
     {
+        if (! (auth()->user()?->isSuperAdmin() ?? false)) {
+            return [];
+        }
+
         return [
             CreateAction::make()
                 ->label('New brand house')

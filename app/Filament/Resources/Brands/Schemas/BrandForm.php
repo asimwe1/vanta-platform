@@ -147,6 +147,7 @@ class BrandForm
             Section::make('SLA, billing, and card stock')
                 ->description('Manage the manual retainer tier, capacity guard, subscription window, and physical card inventory.')
                 ->icon(Heroicon::OutlinedShieldCheck)
+                ->visible(fn (): bool => auth()->user()?->isSuperAdmin() ?? false)
                 ->columns(2)
                 ->schema([
                     Select::make('subscription_tier')
