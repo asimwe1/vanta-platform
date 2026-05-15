@@ -17,7 +17,7 @@ class CardInquiryController extends Controller
                 'matte_black' => [
                     'name' => 'Matte Black Steel',
                     'finish' => 'Satin black 304 steel',
-                    'price' => '$15/card',
+                    'price' => 'Starting at $15 / unit',
                     'accent' => 'amber',
                     'description' => 'The signature Vanta finish for private clubs, hotels, and invitation-only client lists.',
                     'features' => ['Laser-etched identity', 'NFC enabled', 'Low-glare finish'],
@@ -25,7 +25,7 @@ class CardInquiryController extends Controller
                 'brushed_gold' => [
                     'name' => 'Brushed Gold Steel',
                     'finish' => 'Warm brushed metal',
-                    'price' => '$15/card',
+                    'price' => 'Starting at $15 / unit',
                     'accent' => 'gold',
                     'description' => 'A high-signal option for hospitality, premium retail, and members-only experiences.',
                     'features' => ['Brushed grain', 'Amber edge detail', 'NFC enabled'],
@@ -33,7 +33,7 @@ class CardInquiryController extends Controller
                 'graphite_steel' => [
                     'name' => 'Graphite Steel',
                     'finish' => 'Deep graphite polish',
-                    'price' => '$15/card',
+                    'price' => 'Starting at $15 / unit',
                     'accent' => 'graphite',
                     'description' => 'Quiet and technical, built for brands that want a restrained command-center look.',
                     'features' => ['Graphite face', 'Subtle engraving', 'NFC enabled'],

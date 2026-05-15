@@ -29,10 +29,10 @@
                 <div class="max-w-2xl">
                     <p class="mb-5 text-xs font-semibold uppercase tracking-[0.36em] text-amber-200">Clienteling control center</p>
                     <h1 class="text-5xl font-light leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
-                        VIP access, requests, and cards in one command view.
+                        Total Recognition. Zero Friction.
                     </h1>
                     <p class="mt-7 max-w-lg text-lg leading-8 text-zinc-300">
-                        A private operating layer for premium brands: client profiles, verified requests, insights, and metal card stock.
+                        A private operating layer for premium brands: instant VIP recognition, verified requests, predictive retention, and physical access assets.
                     </p>
                     <div class="mt-9 flex flex-col gap-3 sm:flex-row">
                         <a href="#plans" class="bg-amber-300 px-5 py-3 text-center text-sm font-semibold text-zinc-950 transition hover:bg-amber-200">Explore plans</a>
@@ -46,7 +46,7 @@
                             <div class="flex items-center justify-between border-b border-white/10 px-5 py-4">
                                 <div>
                                     <p class="text-xs uppercase tracking-[0.28em] text-amber-200">Today</p>
-                                    <h2 class="mt-1 text-xl font-light">Concierge Pipeline</h2>
+                                    <h2 class="mt-1 text-xl font-light">Recognition Console</h2>
                                 </div>
                                 <span class="bg-emerald-300 px-3 py-1 text-xs font-semibold text-emerald-950">Live</span>
                             </div>
@@ -70,23 +70,23 @@
                                 <div class="grid grid-cols-[1fr_auto] gap-4 border border-white/10 bg-white/[0.04] p-4">
                                     <div>
                                         <p class="text-sm font-medium text-white">Amina R.</p>
-                                        <p class="mt-1 text-sm text-zinc-400">Fitting request · OTP verified</p>
+                                        <p class="mt-1 text-sm text-zinc-400">1M+ Spend Verified · OTP clear</p>
                                     </div>
-                                    <span class="text-xs uppercase tracking-[0.18em] text-amber-200">Gold</span>
+                                    <span class="text-xs uppercase tracking-[0.18em] text-amber-200">Black Tier</span>
                                 </div>
                                 <div class="grid grid-cols-[1fr_auto] gap-4 border border-white/10 bg-white/[0.04] p-4">
                                     <div>
                                         <p class="text-sm font-medium text-white">Cedric M.</p>
-                                        <p class="mt-1 text-sm text-zinc-400">Airport pickup · Pending</p>
+                                        <p class="mt-1 text-sm text-zinc-400">Velocity drop · Pulse alert</p>
                                     </div>
-                                    <span class="text-xs uppercase tracking-[0.18em] text-teal-200">Platinum</span>
+                                    <span class="text-xs uppercase tracking-[0.18em] text-teal-200">At Risk</span>
                                 </div>
                                 <div class="grid grid-cols-[1fr_auto] gap-4 border border-white/10 bg-white/[0.04] p-4">
                                     <div>
                                         <p class="text-sm font-medium text-white">Nadia K.</p>
-                                        <p class="mt-1 text-sm text-zinc-400">Card activated · Live profile</p>
+                                        <p class="mt-1 text-sm text-zinc-400">Card scan · Private profile opened</p>
                                     </div>
-                                    <span class="text-xs uppercase tracking-[0.18em] text-zinc-300">Black</span>
+                                    <span class="text-xs uppercase tracking-[0.18em] text-zinc-300">Vanta ID Active</span>
                                 </div>
                             </div>
                         </div>
@@ -123,7 +123,7 @@
                 </div>
                 <div class="bg-zinc-950 p-5">
                     <p class="text-xs uppercase tracking-[0.24em] text-amber-200">04</p>
-                    <p class="mt-3 text-lg font-light text-white">Card stock</p>
+                    <p class="mt-3 text-lg font-light text-white">Hardware Assets</p>
                     <div class="mt-5 aspect-[1.58/1] border border-amber-200/30 bg-[linear-gradient(135deg,#050505,#262626_45%,#0b0b0b)]"></div>
                 </div>
             </div>
@@ -149,10 +149,10 @@
                         </div>
                         <h3 class="mt-4 text-2xl font-light text-white">Vanta One</h3>
                         <p class="mt-2 text-sm text-zinc-400">Boutique elite infrastructure</p>
-                        <div class="mt-6 space-y-2">
-                            <div class="h-2 w-4/5 bg-white/10"></div>
-                            <div class="h-2 w-2/3 bg-amber-200/30"></div>
-                            <div class="h-2 w-1/2 bg-white/10"></div>
+                        <div class="mt-6 space-y-3 text-sm text-zinc-300">
+                            <p class="border border-white/10 bg-white/[0.04] px-3 py-2">20 VIP Slots</p>
+                            <p class="border border-white/10 bg-white/[0.04] px-3 py-2">Email OTP and magic links</p>
+                            <p class="border border-white/10 bg-white/[0.04] px-3 py-2">Monthly Pulse Brief</p>
                         </div>
                         <p class="mt-5 text-xs uppercase tracking-[0.22em] text-zinc-500">Powered by ApheZis visible</p>
                         <p class="mt-6 text-3xl font-light text-white">$50<span class="text-sm text-zinc-500"> / month guide</span></p>
@@ -163,11 +163,11 @@
                             <span class="border border-amber-200/30 px-2 py-1 text-xs text-amber-100">125 VIPs</span>
                         </div>
                         <h3 class="mt-4 text-2xl font-light text-white">Vanta Luxe</h3>
-                        <p class="mt-2 text-sm text-zinc-300">Private-label Vanta View</p>
-                        <div class="mt-6 grid grid-cols-3 gap-2">
-                            <div class="h-14 border border-amber-200/20 bg-amber-200/10"></div>
-                            <div class="h-14 border border-amber-200/20 bg-amber-200/10"></div>
-                            <div class="h-14 border border-amber-200/20 bg-amber-200/10"></div>
+                        <p class="mt-2 text-sm text-zinc-300">Private-label business intelligence</p>
+                        <div class="mt-6 space-y-3 text-sm text-zinc-100">
+                            <p class="border border-amber-200/20 bg-amber-200/10 px-3 py-2">Full White-Labeling</p>
+                            <p class="border border-amber-200/20 bg-amber-200/10 px-3 py-2">Live Vanta View Dashboard</p>
+                            <p class="border border-amber-200/20 bg-amber-200/10 px-3 py-2">Churn-risk and velocity alerts</p>
                         </div>
                         <p class="mt-6 text-3xl font-light text-white">$200<span class="text-sm text-zinc-500"> / month guide</span></p>
                     </article>
@@ -192,8 +192,38 @@
                                 <span class="text-xs uppercase tracking-[0.18em] text-zinc-500">Black Glove</span>
                             </div>
                         </div>
-                        <p class="mt-6 text-2xl font-light text-white">Inquire<span class="text-sm text-zinc-500"> for onboarding</span></p>
+                        <p class="mt-6 text-2xl font-light text-white">Bespoke<span class="text-sm text-zinc-500"> onboarding</span></p>
                     </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="relative z-10 border-t border-white/10 bg-zinc-950 px-6 py-20">
+            <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-[0.34em] text-amber-200">Vanta Pulse</p>
+                    <h2 class="mt-4 text-4xl font-light leading-tight text-white sm:text-5xl">Predictive retention, not dead data.</h2>
+                    <p class="mt-5 max-w-xl text-base leading-8 text-zinc-300">
+                        Vanta tracks VIP access velocity from magic links and card scans. When a high-value client drops below their normal rhythm, the Pulse brief flags the risk before the relationship fades.
+                    </p>
+                </div>
+
+                <div class="grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-3">
+                    <div class="bg-zinc-950 p-5">
+                        <p class="text-xs uppercase tracking-[0.24em] text-zinc-500">Trigger</p>
+                        <p class="mt-4 text-3xl font-light text-white">50%</p>
+                        <p class="mt-2 text-sm leading-6 text-zinc-400">Velocity drop over 14 days</p>
+                    </div>
+                    <div class="bg-zinc-950 p-5">
+                        <p class="text-xs uppercase tracking-[0.24em] text-zinc-500">Signal</p>
+                        <p class="mt-4 text-3xl font-light text-amber-200">Pulse</p>
+                        <p class="mt-2 text-sm leading-6 text-zinc-400">Monthly brief and live alerts</p>
+                    </div>
+                    <div class="bg-zinc-950 p-5">
+                        <p class="text-xs uppercase tracking-[0.24em] text-zinc-500">Outcome</p>
+                        <p class="mt-4 text-3xl font-light text-white">Retain</p>
+                        <p class="mt-2 text-sm leading-6 text-zinc-400">Manager sees who needs attention</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -206,8 +236,8 @@
                     <a href="{{ route('cards.index') }}" class="mt-7 inline-flex bg-amber-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-amber-200">Explore card designs</a>
                     <div class="mt-8 grid gap-3 sm:grid-cols-2">
                         <div class="border border-white/10 bg-white/[0.04] p-4">
-                            <p class="text-2xl font-light text-white">15</p>
-                            <p class="mt-1 text-xs uppercase tracking-[0.22em] text-zinc-400">USD / standard card</p>
+                            <p class="text-2xl font-light text-white">$15</p>
+                            <p class="mt-1 text-xs uppercase tracking-[0.22em] text-zinc-400">Starting / unit</p>
                         </div>
                         <div class="border border-white/10 bg-white/[0.04] p-4">
                             <p class="text-2xl font-light text-white">Quote</p>
@@ -241,9 +271,9 @@
 
         <section class="relative z-10 border-t border-white/10 bg-zinc-950 px-6 py-10">
             <div class="mx-auto grid max-w-6xl gap-px overflow-hidden border border-white/10 bg-white/10 text-sm md:grid-cols-3">
-                <div class="bg-zinc-950 p-5"><span class="text-zinc-100">Magic links</span><br><span class="text-zinc-500">No VIP passwords</span></div>
-                <div class="bg-zinc-950 p-5"><span class="text-zinc-100">Vanta View</span><br><span class="text-zinc-500">Usage signals</span></div>
-                <div class="bg-zinc-950 p-5"><span class="text-zinc-100">Manual billing</span><br><span class="text-zinc-500">Capacity and stock</span></div>
+                <div class="bg-zinc-950 p-5"><span class="text-zinc-100">Sector</span><br><span class="text-zinc-500">Boutique Lounges (Kigali)</span></div>
+                <div class="bg-zinc-950 p-5"><span class="text-zinc-100">Sector</span><br><span class="text-zinc-500">Private Hospitality (Kigali)</span></div>
+                <div class="bg-zinc-950 p-5"><span class="text-zinc-100">Sector</span><br><span class="text-zinc-500">Premium Retail (Kigali)</span></div>
             </div>
             <div class="mx-auto mt-8 flex max-w-6xl justify-end">
                 @include('partials.powered-by')
