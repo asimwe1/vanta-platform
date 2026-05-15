@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    @php
+        $isWhiteLabel = ! ($brand->branding_visible ?? true) || in_array($brand->subscription_tier ?? 'tier_1', ['tier_2', 'tier_3'], true);
+        $brandAccessTitle = "{$brand->name} Private Access";
+        $pageTitle = $isWhiteLabel ? $brandAccessTitle : "{$brand->name} | Vanta";
+        $pageDescription = $brand->description ?: "Private VIP recognition and request access for {$brand->name} clients.";
+        $shareImage = filled($brand->logo_path) ? asset('storage/' . $brand->logo_path) : null;
+    @endphp
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $brand->name }} | Vanta</title>
-    @if (! ($brand->branding_visible ?? true) && $brand->logo_path)
-        <link rel="icon" href="{{ asset('storage/' . $brand->logo_path) }}">
+    <title>{{ $pageTitle }}</title>
+    <meta name="description" content="{{ $pageDescription }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $pageTitle }}">
+    <meta property="og:description" content="{{ $pageDescription }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:site_name" content="{{ $isWhiteLabel ? $brand->name : 'Vanta' }}">
+    <meta name="twitter:card" content="{{ $shareImage ? 'summary_large_image' : 'summary' }}">
+    <meta name="twitter:title" content="{{ $pageTitle }}">
+    <meta name="twitter:description" content="{{ $pageDescription }}">
+    @if($shareImage)
+        <meta property="og:image" content="{{ $shareImage }}">
+        <meta property="og:image:alt" content="{{ $brand->name }} private access">
+        <meta name="twitter:image" content="{{ $shareImage }}">
+    @endif
+    @if ($isWhiteLabel && $brand->logo_path)
+        <link rel="icon" href="{{ $shareImage }}">
     @endif
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
