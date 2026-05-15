@@ -38,7 +38,7 @@ class SubscriptionTiers
     {
         return match ($tier) {
             'tier_2' => '$200 / month guide',
-            'tier_3' => 'Inquire for onboarding',
+            'tier_3' => 'Bespoke onboarding',
             default => '$50 / month guide',
         };
     }
