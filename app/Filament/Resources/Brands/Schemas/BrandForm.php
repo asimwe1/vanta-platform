@@ -116,7 +116,7 @@ class BrandForm
                         ->default('tier_1')
                         ->live()
                         ->afterStateUpdated(function ($state, $set): void {
-                            $set('vip_capacity', SubscriptionTiers::capacityFor($state ?: 'tier_1') ?? 999999);
+                            $set('vip_capacity', SubscriptionTiers::capacityFor($state ?: 'tier_1') ?? 500);
                             $set('data_retention_days', SubscriptionTiers::retentionDaysFor($state ?: 'tier_1') ?? 3650);
                         })
                         ->required()
@@ -135,8 +135,8 @@ class BrandForm
                         ->label('VIP capacity')
                         ->numeric()
                         ->minValue(1)
-                        ->default(fn ($get): int => SubscriptionTiers::capacityFor($get('subscription_tier') ?: 'tier_1') ?? 999999)
-                        ->helperText('Vanta One: 20, Vanta Luxe: 125, Vanta Noir can be set high or handled manually.'),
+                        ->default(fn ($get): int => SubscriptionTiers::capacityFor($get('subscription_tier') ?: 'tier_1') ?? 500)
+                        ->helperText('Vanta One: 20, Vanta Luxe: 125, Vanta Noir: 500 base before enterprise scaling review.'),
                     TextInput::make('card_stock_remaining')
                         ->label('Metal card stock')
                         ->numeric()

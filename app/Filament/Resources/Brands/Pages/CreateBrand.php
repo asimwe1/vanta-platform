@@ -47,7 +47,7 @@ class CreateBrand extends CreateRecord
         ];
 
         $data['subscription_tier'] ??= 'tier_1';
-        $data['vip_capacity'] ??= SubscriptionTiers::capacityFor($data['subscription_tier']) ?? 999999;
+        $data['vip_capacity'] ??= SubscriptionTiers::capacityFor($data['subscription_tier']) ?? 500;
         $data['data_retention_days'] ??= SubscriptionTiers::retentionDaysFor($data['subscription_tier']) ?? 3650;
 
         return $data;

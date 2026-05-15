@@ -20,7 +20,7 @@ class SubscriptionTiers
     {
         return match ($tier) {
             'tier_2' => 125,
-            'tier_3' => null,
+            'tier_3' => 500,
             default => 20,
         };
     }
@@ -38,7 +38,7 @@ class SubscriptionTiers
     {
         return match ($tier) {
             'tier_2' => '$200 / month guide',
-            'tier_3' => 'Custom quote',
+            'tier_3' => 'Inquire for onboarding',
             default => '$50 / month guide',
         };
     }
