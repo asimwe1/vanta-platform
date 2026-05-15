@@ -145,22 +145,25 @@
                     <article class="border border-white/10 bg-white/[0.04] p-6">
                         <div class="flex items-center justify-between">
                             <p class="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200">Tier I</p>
-                            <span class="border border-white/10 px-2 py-1 text-xs text-zinc-400">50 VIPs</span>
+                            <span class="border border-white/10 px-2 py-1 text-xs text-zinc-400">20 VIPs</span>
                         </div>
-                        <h3 class="mt-4 text-2xl font-light text-white">Entry Concierge</h3>
+                        <h3 class="mt-4 text-2xl font-light text-white">Vanta One</h3>
+                        <p class="mt-2 text-sm text-zinc-400">Boutique elite infrastructure</p>
                         <div class="mt-6 space-y-2">
                             <div class="h-2 w-4/5 bg-white/10"></div>
                             <div class="h-2 w-2/3 bg-amber-200/30"></div>
                             <div class="h-2 w-1/2 bg-white/10"></div>
                         </div>
-                        <p class="mt-6 text-3xl font-light text-white">$100<span class="text-sm text-zinc-500"> / month guide</span></p>
+                        <p class="mt-5 text-xs uppercase tracking-[0.22em] text-zinc-500">Powered by ApheZis visible</p>
+                        <p class="mt-6 text-3xl font-light text-white">$50<span class="text-sm text-zinc-500"> / month guide</span></p>
                     </article>
                     <article class="border border-amber-300/40 bg-amber-300/[0.08] p-6 shadow-2xl shadow-amber-950/20">
                         <div class="flex items-center justify-between">
                             <p class="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200">Tier II</p>
                             <span class="border border-amber-200/30 px-2 py-1 text-xs text-amber-100">250 VIPs</span>
                         </div>
-                        <h3 class="mt-4 text-2xl font-light text-white">Elite Management</h3>
+                        <h3 class="mt-4 text-2xl font-light text-white">Vanta Luxe</h3>
+                        <p class="mt-2 text-sm text-zinc-300">Insight-led client operations</p>
                         <div class="mt-6 grid grid-cols-3 gap-2">
                             <div class="h-14 border border-amber-200/20 bg-amber-200/10"></div>
                             <div class="h-14 border border-amber-200/20 bg-amber-200/10"></div>
@@ -173,7 +176,8 @@
                             <p class="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200">Tier III</p>
                             <span class="border border-white/10 px-2 py-1 text-xs text-zinc-400">Unlimited</span>
                         </div>
-                        <h3 class="mt-4 text-2xl font-light text-white">Enterprise</h3>
+                        <h3 class="mt-4 text-2xl font-light text-white">Vanta Noir</h3>
+                        <p class="mt-2 text-sm text-zinc-400">Fully private enterprise layer</p>
                         <div class="mt-6 grid gap-2">
                             <div class="flex items-center gap-2">
                                 <span class="size-3 bg-teal-200"></span>

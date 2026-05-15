@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Brands\Pages;
 
 use App\Filament\Resources\Brands\BrandResource;
+use App\Support\BrandAdminProvisioner;
 use App\Support\DefaultSchemas;
 use App\Support\SubscriptionTiers;
 use Filament\Actions\Action;
@@ -12,6 +13,8 @@ use Illuminate\Contracts\Support\Htmlable;
 class CreateBrand extends CreateRecord
 {
     protected static string $resource = BrandResource::class;
+
+    protected ?array $brandAdminAccess = null;
 
     public function getTitle(): string|Htmlable
     {
@@ -32,6 +35,8 @@ class CreateBrand extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
+        $this->brandAdminAccess = BrandAdminProvisioner::extractAccessData($data);
+
         if (blank($data['form_schema'] ?? null)) {
             $data['form_schema'] = DefaultSchemas::for($data['category'] ?? 'general');
         }
@@ -46,5 +51,10 @@ class CreateBrand extends CreateRecord
         $data['data_retention_days'] ??= SubscriptionTiers::retentionDaysFor($data['subscription_tier']) ?? 3650;
 
         return $data;
+    }
+
+    protected function afterCreate(): void
+    {
+        BrandAdminProvisioner::provision($this->record, $this->brandAdminAccess);
     }
 }

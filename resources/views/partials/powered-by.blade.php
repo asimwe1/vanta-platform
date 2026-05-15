@@ -1,11 +1,14 @@
 @props([
+    'brand' => null,
     'surface' => 'public',
 ])
 
 @php
     $isFilament = $surface === 'filament';
+    $shouldRender = ! $brand || ($brand->subscription_tier ?? 'tier_1') === 'tier_1';
 @endphp
 
+@if ($shouldRender)
 <div
     @if ($isFilament)
         style="padding: 0; text-align: left; color: #d4d4d8; font-size: 0.76rem; letter-spacing: 0;"
@@ -25,3 +28,4 @@
         @endif
     >ApheZis</a>
 </div>
+@endif

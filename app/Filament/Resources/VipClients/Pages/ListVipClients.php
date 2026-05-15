@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\VipClients\Pages;
 
 use App\Filament\Resources\VipClients\VipClientResource;
+use Filament\Actions\Action;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Support\Icons\Heroicon;
@@ -24,8 +25,18 @@ class ListVipClients extends ListRecords
         $capacityReached = $brand
             && filled($brand->vip_capacity)
             && $brand->vipClients()->count() >= $brand->vip_capacity;
+        $waitlistVisible = $brand
+            && $brand->subscription_tier === 'tier_1'
+            && $brand->vipClients()->count() >= 15
+            && ! $capacityReached;
 
         return [
+            Action::make('waitlist')
+                ->label('Waitlist mode: ' . ($brand?->vipClients()->count() ?? 0) . ' / ' . ($brand?->vip_capacity ?? 20))
+                ->color('warning')
+                ->icon(Heroicon::OutlinedExclamationTriangle)
+                ->disabled()
+                ->visible($waitlistVisible),
             CreateAction::make()
                 ->label('New VIP profile')
                 ->icon(Heroicon::Plus)

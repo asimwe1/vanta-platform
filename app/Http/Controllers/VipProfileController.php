@@ -51,6 +51,21 @@ class VipProfileController extends Controller
         return $this->profileView($vipClient);
     }
 
+    public function showForBrand(Request $request, string $brandSlug, string $vipSlug): View
+    {
+        $vipClient = VipClient::query()
+            ->with('brand')
+            ->where('slug', $vipSlug)
+            ->where('is_active', true)
+            ->whereHas('brand', fn ($query) => $query->where('slug', $brandSlug))
+            ->firstOrFail();
+
+        $vipClient->forceFill(['last_login_at' => now()])->save();
+        $request->session()->put($this->sessionAccessKey($vipClient), true);
+
+        return $this->profileView($vipClient);
+    }
+
     public function sendOtp(Request $request, string $slug): RedirectResponse
     {
         $vipClient = $this->authorizedVipClient($request, $slug);

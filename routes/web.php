@@ -11,3 +11,4 @@ Route::get('/vip/demo', [VipProfileController::class, 'demo'])->name('vip.profil
 Route::get('/vip/{slug}', [VipProfileController::class, 'show'])->middleware('signed')->name('vip.profile.show');
 Route::post('/vip/{slug}/request', [VipProfileController::class, 'sendOtp'])->name('vip.request.send-otp');
 Route::post('/vip/{slug}/request/verify', [VipProfileController::class, 'verifyOtp'])->name('vip.request.verify-otp');
+Route::get('/{brandSlug}/{vipSlug}', [VipProfileController::class, 'showForBrand'])->middleware('signed')->name('vip.profile.brand.show');

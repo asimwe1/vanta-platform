@@ -29,7 +29,7 @@ class BrandFactory extends Factory
             'is_active' => true,
             'subscription_status' => 'active',
             'subscription_tier' => 'tier_1',
-            'vip_capacity' => 50,
+            'vip_capacity' => 20,
             'subscription_end_date' => now()->addYear(),
             'card_stock_remaining' => 20,
             'data_retention_days' => 30,
