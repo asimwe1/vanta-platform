@@ -61,13 +61,13 @@ class BrandsTable
             ->emptyStateDescription('Create the first brand house before adding VIP profiles.')
             ->recordActions([
                 EditAction::make()
-                    ->label('Refine'),
+                    ->label(fn (): string => auth()->user()?->isSuperAdmin() ? 'Refine' : 'Edit details'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make()
                         ->label('Archive selected'),
-                ]),
+                ])->visible(fn (): bool => auth()->user()?->isSuperAdmin() ?? false),
             ]);
     }
 }

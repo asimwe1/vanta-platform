@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ClientOtpMail;
+use App\Models\Brand;
 use App\Models\ServiceRequest;
 use App\Models\VipClient;
 use App\Support\DefaultSchemas;
@@ -46,6 +47,7 @@ class VipProfileController extends Controller
             ->firstOrFail();
 
         $vipClient->forceFill(['last_login_at' => now()])->save();
+        $this->logVisit($request, $vipClient);
         $request->session()->put($this->sessionAccessKey($vipClient), true);
 
         return $this->profileView($vipClient);
@@ -61,9 +63,28 @@ class VipProfileController extends Controller
             ->firstOrFail();
 
         $vipClient->forceFill(['last_login_at' => now()])->save();
+        $this->logVisit($request, $vipClient);
         $request->session()->put($this->sessionAccessKey($vipClient), true);
 
         return $this->profileView($vipClient);
+    }
+
+    public function showBrand(string $brandSlug): View
+    {
+        $brand = Brand::query()
+            ->with(['vipClients' => fn ($query) => $query
+                ->where('is_active', true)
+                ->latest()
+                ->limit(3)])
+            ->where('slug', $brandSlug)
+            ->where('is_active', true)
+            ->firstOrFail();
+
+        return view('brand.public', [
+            'brand' => $brand,
+            'formSchema' => $brand->form_schema ?: DefaultSchemas::for($brand->category),
+            'vipClients' => $brand->vipClients,
+        ]);
     }
 
     public function sendOtp(Request $request, string $slug): RedirectResponse
@@ -147,6 +168,15 @@ class VipProfileController extends Controller
             'formSchema' => $this->schemaFor($vipClient),
             'isDemo' => false,
             'pendingOtp' => session()->has($this->sessionPayloadKey($vipClient)),
+        ]);
+    }
+
+    protected function logVisit(Request $request, VipClient $vipClient): void
+    {
+        $vipClient->visitLogs()->create([
+            'user_agent' => $request->userAgent(),
+            'ip_address' => $request->ip(),
+            'visited_at' => now(),
         ]);
     }
 

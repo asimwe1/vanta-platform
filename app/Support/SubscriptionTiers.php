@@ -19,8 +19,8 @@ class SubscriptionTiers
     public static function capacityFor(string $tier): ?int
     {
         return match ($tier) {
-            'tier_2' => 250,
-            'tier_3' => null,
+            'tier_2' => 125,
+            'tier_3' => 500,
             default => 20,
         };
     }
@@ -37,8 +37,8 @@ class SubscriptionTiers
     public static function monthlyGuideFor(string $tier): string
     {
         return match ($tier) {
-            'tier_2' => '$300 / month guide',
-            'tier_3' => 'Custom quote',
+            'tier_2' => '$200 / month guide',
+            'tier_3' => 'Inquire for onboarding',
             default => '$50 / month guide',
         };
     }

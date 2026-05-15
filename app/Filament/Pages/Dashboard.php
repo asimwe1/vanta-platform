@@ -122,6 +122,13 @@ class Dashboard extends BaseDashboard
                     'value' => number_format($currentBrand->card_stock_remaining),
                     'detail' => $currentBrand->card_stock_remaining < 5 ? 'Low stock: reorder recommended' : 'Stock level healthy',
                 ],
+                [
+                    'label' => 'Churn risk',
+                    'value' => (clone $vipClients)->where('churn_risk_status', 'at_risk')->count(),
+                    'detail' => in_array($currentBrand->subscription_tier, ['tier_2', 'tier_3'], true)
+                        ? 'Vanta View nightly risk signal'
+                        : 'Upgrade to Luxe for Vanta View',
+                ],
             ] : [],
             'recentVipClients' => $recentVipClients,
             'latestServiceRequests' => $latestServiceRequests,

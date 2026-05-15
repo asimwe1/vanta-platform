@@ -36,7 +36,8 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        return $this->isSuperAdmin()
+            || ($this->isBrandManager() && $this->brand_id !== null);
     }
 
     public function brand(): BelongsTo
@@ -46,7 +47,12 @@ class User extends Authenticatable implements FilamentUser
 
     public function isSuperAdmin(): bool
     {
-        return $this->brand_id === null || $this->role === 'super_admin';
+        return $this->role === 'super_admin' && $this->brand_id === null;
+    }
+
+    public function isBrandManager(): bool
+    {
+        return $this->role === 'brand_manager';
     }
 
     public function hasExpiredBrandSubscription(): bool

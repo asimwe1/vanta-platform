@@ -5,6 +5,7 @@ namespace App\Support;
 use App\Models\Brand;
 use App\Models\User;
 use App\Notifications\BrandAdminAccessNotification;
+use Illuminate\Support\Facades\Notification as NotificationFacade;
 use Illuminate\Support\Str;
 
 class BrandAdminProvisioner
@@ -14,11 +15,13 @@ class BrandAdminProvisioner
      */
     public static function extractAccessData(array &$data): ?array
     {
+        $hasExplicitAdminToggle = array_key_exists('create_brand_admin', $data);
+
         $access = [
             'enabled' => (bool) ($data['create_brand_admin'] ?? false),
             'send_password' => (bool) ($data['send_brand_admin_password'] ?? true),
             'name' => $data['brand_admin_name'] ?? null,
-            'email' => $data['brand_admin_email'] ?? null,
+            'email' => $data['brand_admin_email'] ?? $data['email'] ?? null,
         ];
 
         unset(
@@ -28,21 +31,28 @@ class BrandAdminProvisioner
             $data['brand_admin_email'],
         );
 
+        if (filled($access['email']) && ! $hasExplicitAdminToggle) {
+            $access['enabled'] = true;
+        }
+
         return $access['enabled'] && filled($access['email']) ? $access : null;
     }
 
     /**
      * @param  array<string, mixed>|null  $access
+     * @return array{email: string, created: bool, mailed: bool, mailer: string}|null
      */
-    public static function provision(Brand $brand, ?array $access): void
+    public static function provision(Brand $brand, ?array $access): ?array
     {
         if (! $access) {
-            return;
+            return null;
         }
 
-        $password = Str::password(16);
+        $password = Str::password(16, symbols: false);
 
         $user = User::query()->firstOrNew(['email' => $access['email']]);
+        $wasRecentlyCreated = ! $user->exists;
+
         $user->forceFill([
             'brand_id' => $brand->getKey(),
             'name' => $access['name'] ?: $brand->name . ' Admin',
@@ -52,7 +62,14 @@ class BrandAdminProvisioner
         ])->save();
 
         if ($access['send_password'] || $user->wasRecentlyCreated) {
-            $user->notify(new BrandAdminAccessNotification($brand, $password));
+            NotificationFacade::sendNow($user, new BrandAdminAccessNotification($brand, $password));
         }
+
+        return [
+            'email' => $user->email,
+            'created' => $wasRecentlyCreated,
+            'mailed' => $access['send_password'] || $wasRecentlyCreated,
+            'mailer' => (string) config('mail.default'),
+        ];
     }
 }

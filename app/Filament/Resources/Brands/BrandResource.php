@@ -40,6 +40,11 @@ class BrandResource extends Resource
         return BrandsTable::configure($table);
     }
 
+    public static function getNavigationLabel(): string
+    {
+        return auth()->user()?->isSuperAdmin() ? 'Brand houses' : 'Brand details';
+    }
+
     public static function getEloquentQuery(): Builder
     {
         $query = parent::getEloquentQuery();
@@ -69,6 +74,11 @@ class BrandResource extends Resource
     }
 
     public static function canCreate(): bool
+    {
+        return auth()->user()?->isSuperAdmin() ?? false;
+    }
+
+    public static function canDelete(Model $record): bool
     {
         return auth()->user()?->isSuperAdmin() ?? false;
     }

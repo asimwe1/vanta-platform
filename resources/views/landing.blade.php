@@ -160,39 +160,39 @@
                     <article class="border border-amber-300/40 bg-amber-300/[0.08] p-6 shadow-2xl shadow-amber-950/20">
                         <div class="flex items-center justify-between">
                             <p class="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200">Tier II</p>
-                            <span class="border border-amber-200/30 px-2 py-1 text-xs text-amber-100">250 VIPs</span>
+                            <span class="border border-amber-200/30 px-2 py-1 text-xs text-amber-100">125 VIPs</span>
                         </div>
                         <h3 class="mt-4 text-2xl font-light text-white">Vanta Luxe</h3>
-                        <p class="mt-2 text-sm text-zinc-300">Insight-led client operations</p>
+                        <p class="mt-2 text-sm text-zinc-300">Private-label Vanta View</p>
                         <div class="mt-6 grid grid-cols-3 gap-2">
                             <div class="h-14 border border-amber-200/20 bg-amber-200/10"></div>
                             <div class="h-14 border border-amber-200/20 bg-amber-200/10"></div>
                             <div class="h-14 border border-amber-200/20 bg-amber-200/10"></div>
                         </div>
-                        <p class="mt-6 text-3xl font-light text-white">$300<span class="text-sm text-zinc-500"> / month guide</span></p>
+                        <p class="mt-6 text-3xl font-light text-white">$200<span class="text-sm text-zinc-500"> / month guide</span></p>
                     </article>
                     <article class="border border-white/10 bg-white/[0.04] p-6">
                         <div class="flex items-center justify-between">
                             <p class="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200">Tier III</p>
-                            <span class="border border-white/10 px-2 py-1 text-xs text-zinc-400">Unlimited</span>
+                            <span class="border border-white/10 px-2 py-1 text-xs text-zinc-400">500 base</span>
                         </div>
                         <h3 class="mt-4 text-2xl font-light text-white">Vanta Noir</h3>
-                        <p class="mt-2 text-sm text-zinc-400">Fully private enterprise layer</p>
+                        <p class="mt-2 text-sm text-zinc-400">Sovereign enterprise layer</p>
                         <div class="mt-6 grid gap-2">
                             <div class="flex items-center gap-2">
                                 <span class="size-3 bg-teal-200"></span>
-                                <span class="h-2 flex-1 bg-white/10"></span>
+                                <span class="text-xs uppercase tracking-[0.18em] text-zinc-500">SMS gateway</span>
                             </div>
                             <div class="flex items-center gap-2">
                                 <span class="size-3 bg-amber-200"></span>
-                                <span class="h-2 flex-1 bg-white/10"></span>
+                                <span class="text-xs uppercase tracking-[0.18em] text-zinc-500">API access</span>
                             </div>
                             <div class="flex items-center gap-2">
                                 <span class="size-3 bg-zinc-300"></span>
-                                <span class="h-2 flex-1 bg-white/10"></span>
+                                <span class="text-xs uppercase tracking-[0.18em] text-zinc-500">Black Glove</span>
                             </div>
                         </div>
-                        <p class="mt-6 text-3xl font-light text-white">Custom<span class="text-sm text-zinc-500"> / quote</span></p>
+                        <p class="mt-6 text-2xl font-light text-white">Inquire<span class="text-sm text-zinc-500"> for onboarding</span></p>
                     </article>
                 </div>
             </div>

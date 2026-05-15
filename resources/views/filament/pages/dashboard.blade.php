@@ -421,7 +421,7 @@
                     <div>
                         <h3 class="vanta-panel-title">{{ $showAdvancedInsights ? 'Vanta View insights' : 'Service request inbox' }}</h3>
                         <p class="vanta-panel-subtitle">
-                            {{ $showAdvancedInsights ? 'Advanced retainer lens: verified requests, activity patterns, and briefing-ready signals.' : 'Tier I lens: latest verified actions from VIP clients.' }}
+                            {{ $showAdvancedInsights ? 'Vanta Luxe lens: churn risk, peak visit frequency, and spend-pattern briefing signals.' : 'Tier I lens: latest verified actions from VIP clients.' }}
                         </p>
                     </div>
                     <a class="vanta-link" href="{{ $serviceRequestIndexUrl }}">View inbox</a>

@@ -12,6 +12,7 @@ use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Support\Icons\Heroicon;
 use Illuminate\Contracts\Support\Htmlable;
+use Throwable;
 
 class EditBrand extends EditRecord
 {
@@ -21,12 +22,27 @@ class EditBrand extends EditRecord
 
     public function getTitle(): string|Htmlable
     {
-        return 'Refine brand house';
+        return auth()->user()?->isSuperAdmin() ? 'Refine brand house' : 'Brand details';
     }
 
     protected function getHeaderActions(): array
     {
+        if (! (auth()->user()?->isSuperAdmin() ?? false)) {
+            return [
+                Action::make('publicView')
+                    ->label('Public view')
+                    ->icon(Heroicon::OutlinedEye)
+                    ->url(fn (): string => $this->getPublicPreviewUrl())
+                    ->openUrlInNewTab(),
+            ];
+        }
+
         return [
+            Action::make('publicView')
+                ->label('Public view')
+                ->icon(Heroicon::OutlinedEye)
+                ->url(fn (): string => $this->getPublicPreviewUrl())
+                ->openUrlInNewTab(),
             Action::make('applyTemplate')
                 ->label('Apply category template')
                 ->icon(Heroicon::OutlinedSparkles)
@@ -50,6 +66,11 @@ class EditBrand extends EditRecord
         ];
     }
 
+    protected function getPublicPreviewUrl(): string
+    {
+        return route('brand.public.show', ['brandSlug' => $this->record->slug]);
+    }
+
     protected function getSaveFormAction(): Action
     {
         return parent::getSaveFormAction()
@@ -65,15 +86,49 @@ class EditBrand extends EditRecord
             'accent' => $data['accent_color'] ?? '#111111',
         ];
 
+        if (! (auth()->user()?->isSuperAdmin() ?? false)) {
+            $data['subscription_tier'] = $this->record->subscription_tier;
+            $data['subscription_status'] = $this->record->subscription_status;
+            $data['vip_capacity'] = $this->record->vip_capacity;
+            $data['data_retention_days'] = $this->record->data_retention_days;
+            $data['subscription_end_date'] = $this->record->subscription_end_date;
+            $data['card_stock_remaining'] = $this->record->card_stock_remaining;
+        }
+
         $data['subscription_tier'] ??= 'tier_1';
-        $data['vip_capacity'] ??= SubscriptionTiers::capacityFor($data['subscription_tier']) ?? 999999;
+        $data['vip_capacity'] ??= SubscriptionTiers::capacityFor($data['subscription_tier']) ?? 500;
         $data['data_retention_days'] ??= SubscriptionTiers::retentionDaysFor($data['subscription_tier']) ?? 3650;
+        $data['branding_visible'] ??= $data['subscription_tier'] === 'tier_1';
 
         return $data;
     }
 
     protected function afterSave(): void
     {
-        BrandAdminProvisioner::provision($this->record, $this->brandAdminAccess);
+        try {
+            $result = BrandAdminProvisioner::provision($this->record, $this->brandAdminAccess);
+        } catch (Throwable $exception) {
+            report($exception);
+
+            Notification::make()
+                ->danger()
+                ->title('Brand admin email was not sent')
+                ->body('The brand was saved, but the welcome email failed. Check the mail settings, then resend the admin password.')
+                ->send();
+
+            return;
+        }
+
+        if (! $result) {
+            return;
+        }
+
+        Notification::make()
+            ->success()
+            ->title($result['created'] ? 'Brand admin created' : 'Brand admin updated')
+            ->body($result['mailed']
+                ? 'The Vanta welcome email was sent to ' . $result['email'] . ($result['mailer'] === 'log' ? '. MAIL_MAILER is log, so it was written to the Laravel log instead of a real inbox.' : '.')
+                : 'The brand admin account was updated without sending a new password.')
+            ->send();
     }
 }

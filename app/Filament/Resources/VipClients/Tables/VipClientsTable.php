@@ -40,6 +40,17 @@ class VipClientsTable
                     ->label('Public slug')
                     ->copyable()
                     ->color('gray'),
+                TextColumn::make('churn_risk_status')
+                    ->label('Churn risk')
+                    ->badge()
+                    ->formatStateUsing(fn (?string $state): string => str($state ?: 'unscored')->replace('_', ' ')->title())
+                    ->color(fn (?string $state): string => match ($state) {
+                        'at_risk' => 'danger',
+                        'watch' => 'warning',
+                        'healthy' => 'success',
+                        default => 'gray',
+                    })
+                    ->description(fn ($record): ?string => $record->churn_risk_reason),
                 IconColumn::make('is_active')
                     ->label('Public')
                     ->boolean(),

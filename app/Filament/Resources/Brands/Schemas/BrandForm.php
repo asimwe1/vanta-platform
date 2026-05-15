@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Brands\Schemas;
 use App\Support\DefaultSchemas;
 use App\Support\SubscriptionTiers;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
@@ -29,22 +30,57 @@ class BrandForm
                         ->label('Brand name')
                         ->placeholder('Vanta Atelier')
                         ->prefixIcon(Heroicon::OutlinedSparkles)
+                        ->live(onBlur: true)
+                        ->afterStateUpdated(function ($state, $set, $get): void {
+                            if (blank($get('brand_admin_name'))) {
+                                $set('brand_admin_name', filled($state) ? $state . ' Admin' : null);
+                            }
+                        })
                         ->required()
                         ->maxLength(255),
                     TextInput::make('slug')
-                        ->label('Public slug')
+                        ->label('Public URL')
                         ->placeholder('vanta-atelier')
-                        ->helperText('Used for clean internal references and future public brand URLs.')
+                        ->prefix(fn (): string => rtrim((string) config('app.url'), '/') . '/')
+                        ->helperText('Domain is fixed by Vanta. Edit only the public slug after the slash.')
                         ->prefixIcon(Heroicon::OutlinedLink)
                         ->required()
                         ->alphaDash()
                         ->unique(ignoreRecord: true),
+                    FileUpload::make('logo_path')
+                        ->label('Brand logo')
+                        ->directory('brand-logos')
+                        ->image()
+                        ->imageEditor()
+                        ->helperText('Used for white-label favicon and brand surface treatment.'),
                     Select::make('category')
                         ->label('Business type')
                         ->options(DefaultSchemas::categories())
                         ->default('general')
                         ->required()
                         ->helperText('Used to suggest the right default request fields.'),
+                    TextInput::make('email')
+                        ->label('Brand email')
+                        ->email()
+                        ->placeholder('manager@example.com')
+                        ->prefixIcon(Heroicon::OutlinedEnvelope)
+                        ->live(onBlur: true)
+                        ->afterStateUpdated(function ($state, $set, $get): void {
+                            if (blank($get('brand_admin_email'))) {
+                                $set('brand_admin_email', $state);
+                            }
+                        })
+                        ->helperText('Used as the default admin inbox for Vanta access.'),
+                    TextInput::make('whatsapp_number')
+                        ->label('WhatsApp number')
+                        ->tel()
+                        ->prefixIcon(Heroicon::OutlinedChatBubbleLeftRight)
+                        ->maxLength(40),
+                    TextInput::make('website')
+                        ->label('Website')
+                        ->url()
+                        ->prefixIcon(Heroicon::OutlinedGlobeAlt)
+                        ->maxLength(255),
                     TextInput::make('primary_color')
                         ->label('Primary accent')
                         ->placeholder('#BFA46F')
@@ -64,6 +100,10 @@ class BrandForm
                     Toggle::make('is_active')
                         ->label('Active brand')
                         ->helperText('Inactive brands stay in the archive but are kept out of daily workflows.')
+                        ->default(true),
+                    Toggle::make('branding_visible')
+                        ->label('Show Powered by ApheZis')
+                        ->helperText('Vanta One keeps APHEZIS visible. Luxe and Noir can run as private-label surfaces.')
                         ->default(true),
                 ]),
             Section::make('Client request fields')
@@ -108,6 +148,7 @@ class BrandForm
             Section::make('SLA, billing, and card stock')
                 ->description('Manage the manual retainer tier, capacity guard, subscription window, and physical card inventory.')
                 ->icon(Heroicon::OutlinedShieldCheck)
+                ->visible(fn (): bool => auth()->user()?->isSuperAdmin() ?? false)
                 ->columns(2)
                 ->schema([
                     Select::make('subscription_tier')
@@ -116,8 +157,9 @@ class BrandForm
                         ->default('tier_1')
                         ->live()
                         ->afterStateUpdated(function ($state, $set): void {
-                            $set('vip_capacity', SubscriptionTiers::capacityFor($state ?: 'tier_1') ?? 999999);
+                            $set('vip_capacity', SubscriptionTiers::capacityFor($state ?: 'tier_1') ?? 500);
                             $set('data_retention_days', SubscriptionTiers::retentionDaysFor($state ?: 'tier_1') ?? 3650);
+                            $set('branding_visible', ($state ?: 'tier_1') === 'tier_1');
                         })
                         ->required()
                         ->helperText('Controls capacity, insight access, and retention positioning.'),
@@ -135,8 +177,8 @@ class BrandForm
                         ->label('VIP capacity')
                         ->numeric()
                         ->minValue(1)
-                        ->default(fn ($get): int => SubscriptionTiers::capacityFor($get('subscription_tier') ?: 'tier_1') ?? 999999)
-                        ->helperText('Vanta One: 20, Vanta Luxe: 250, Vanta Noir can be set high or handled manually.'),
+                        ->default(fn ($get): int => SubscriptionTiers::capacityFor($get('subscription_tier') ?: 'tier_1') ?? 500)
+                        ->helperText('Vanta One: 20, Vanta Luxe: 125, Vanta Noir: 500 base before enterprise scaling review.'),
                     TextInput::make('card_stock_remaining')
                         ->label('Metal card stock')
                         ->numeric()
@@ -160,7 +202,8 @@ class BrandForm
                 ->schema([
                     Toggle::make('create_brand_admin')
                         ->label('Create or update brand admin')
-                        ->default(false)
+                        ->default(true)
+                        ->helperText('Creates the private dashboard user for this brand. The account is scoped to this brand only.')
                         ->dehydrated(),
                     Toggle::make('send_brand_admin_password')
                         ->label('Email a new password')
@@ -170,12 +213,15 @@ class BrandForm
                     TextInput::make('brand_admin_name')
                         ->label('Admin name')
                         ->placeholder('Brand manager')
+                        ->default(fn ($get): ?string => filled($get('name')) ? $get('name') . ' Admin' : null)
                         ->required(fn ($get): bool => (bool) $get('create_brand_admin'))
                         ->maxLength(255)
                         ->dehydrated(),
                     TextInput::make('brand_admin_email')
                         ->label('Admin email')
                         ->email()
+                        ->default(fn ($get): ?string => $get('email'))
+                        ->helperText('The welcome email includes the generated temporary password.')
                         ->required(fn ($get): bool => (bool) $get('create_brand_admin'))
                         ->maxLength(255)
                         ->dehydrated(),

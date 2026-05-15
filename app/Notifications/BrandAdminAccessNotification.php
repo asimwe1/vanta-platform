@@ -27,12 +27,12 @@ class BrandAdminAccessNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('Your Vanta Command Center access')
-            ->greeting('Welcome to Vanta')
-            ->line('Your brand admin account has been provisioned for ' . $this->brand->name . '.')
+            ->subject('Vanta account welcome: to the circle of the 1%')
+            ->greeting('Welcome to the circle of the 1%')
+            ->line('Your Vanta Command Center account has been provisioned for ' . $this->brand->name . '.')
             ->line('Login: ' . url('/admin/login'))
             ->line('Email: ' . $notifiable->email)
             ->line('Temporary password: ' . $this->password)
-            ->line('Please change this password after your first login.');
+            ->line('Please change this password from your console after your first login.');
     }
 }
