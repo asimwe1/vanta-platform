@@ -73,6 +73,11 @@ class BrandResource extends Resource
         return auth()->user()?->isSuperAdmin() ?? false;
     }
 
+    public static function canDelete(Model $record): bool
+    {
+        return auth()->user()?->isSuperAdmin() ?? false;
+    }
+
     public static function canEdit(Model $record): bool
     {
         $user = auth()->user();
