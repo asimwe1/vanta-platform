@@ -21,7 +21,7 @@
                 </a>
                 <nav class="flex items-center gap-3">
                     <a href="#plans" class="hidden text-sm text-zinc-300 transition hover:text-white sm:inline">Plans</a>
-                    <a href="{{ route('cards.index') }}" class="border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:border-amber-300 hover:text-amber-200">Card designs</a>
+                    <a href="{{ route('cards.index') }}" class="border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:border-amber-300 hover:text-amber-200">Card specifications</a>
                 </nav>
             </header>
 
@@ -35,8 +35,8 @@
                         A private operating layer for premium brands: instant VIP recognition, verified requests, predictive retention, and physical access assets.
                     </p>
                     <div class="mt-9 flex flex-col gap-3 sm:flex-row">
-                        <a href="#plans" class="bg-amber-300 px-5 py-3 text-center text-sm font-semibold text-zinc-950 transition hover:bg-amber-200">Explore plans</a>
-                        <a href="{{ route('cards.index') }}" class="border border-white/20 px-5 py-3 text-center text-sm font-semibold text-white transition hover:border-white/50">Explore card designs</a>
+                        <a href="#plans" class="bg-amber-300 px-5 py-3 text-center text-sm font-semibold text-zinc-950 transition hover:bg-amber-200">Request Executive Walkthrough</a>
+                        <a href="{{ route('cards.index') }}" class="border border-white/20 px-5 py-3 text-center text-sm font-semibold text-white transition hover:border-white/50">View Card Specifications</a>
                     </div>
                 </div>
 
@@ -129,6 +129,41 @@
             </div>
         </section>
 
+        <section class="relative z-10 border-t border-white/10 bg-zinc-950 px-6 py-20">
+            <div class="mx-auto max-w-6xl">
+                <p class="text-xs font-semibold uppercase tracking-[0.34em] text-amber-200">The Vanta Protocol</p>
+                <div class="mt-4 grid gap-5 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
+                    <h2 class="text-4xl font-light leading-tight text-white sm:text-5xl">Recognition mapped to the staff workflow.</h2>
+                    <p class="max-w-2xl text-base leading-8 text-zinc-300">
+                        Vanta turns a private card or magic link into a clear operating sequence for front-of-house teams, managers, and concierge follow-up.
+                    </p>
+                </div>
+
+                <div class="mt-10 grid gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-4">
+                    <article class="bg-zinc-950 p-5">
+                        <p class="text-xs uppercase tracking-[0.24em] text-amber-200">Step 01</p>
+                        <h3 class="mt-4 text-xl font-light text-white">Identification</h3>
+                        <p class="mt-3 text-sm leading-6 text-zinc-400">Issue encrypted 304-grade steel cards to your top 1%.</p>
+                    </article>
+                    <article class="bg-zinc-950 p-5">
+                        <p class="text-xs uppercase tracking-[0.24em] text-amber-200">Step 02</p>
+                        <h3 class="mt-4 text-xl font-light text-white">Recognition</h3>
+                        <p class="mt-3 text-sm leading-6 text-zinc-400">Staff identifies the guest instantly in the Vanta Console, no questions asked.</p>
+                    </article>
+                    <article class="bg-zinc-950 p-5">
+                        <p class="text-xs uppercase tracking-[0.24em] text-amber-200">Step 03</p>
+                        <h3 class="mt-4 text-xl font-light text-white">Intelligence</h3>
+                        <p class="mt-3 text-sm leading-6 text-zinc-400">Vanta Pulse tracks visit velocity and flags the moment a regular pattern drops.</p>
+                    </article>
+                    <article class="bg-zinc-950 p-5">
+                        <p class="text-xs uppercase tracking-[0.24em] text-amber-200">Step 04</p>
+                        <h3 class="mt-4 text-xl font-light text-white">Retention</h3>
+                        <p class="mt-3 text-sm leading-6 text-zinc-400">Use the SMS Gateway or Priority Concierge to bring them back before the relationship fades.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <section id="plans" class="relative z-10 border-t border-white/10 bg-zinc-950 px-6 py-20">
             <div class="mx-auto max-w-6xl">
                 <p class="text-xs font-semibold uppercase tracking-[0.34em] text-amber-200">SLA and security subscription</p>
@@ -206,6 +241,12 @@
                     <p class="mt-5 max-w-xl text-base leading-8 text-zinc-300">
                         Vanta tracks VIP access velocity from magic links and card scans. When a high-value client drops below their normal rhythm, the Pulse brief flags the risk before the relationship fades.
                     </p>
+                    <div class="mt-7 border border-amber-200/20 bg-amber-300/[0.07] p-5">
+                        <p class="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200">Scenario</p>
+                        <p class="mt-3 text-sm leading-7 text-zinc-300">
+                            Boutique hotel: VIP guest has not booked in 21 days. Action: automated Pulse Alert triggered for the General Manager.
+                        </p>
+                    </div>
                 </div>
 
                 <div class="grid gap-px overflow-hidden border border-white/10 bg-white/10 sm:grid-cols-3">
@@ -233,7 +274,7 @@
                 <div>
                     <p class="text-xs font-semibold uppercase tracking-[0.34em] text-amber-200">Hardware procurement</p>
                     <h2 class="mt-4 text-4xl font-light leading-tight text-white sm:text-5xl">Beyond plastic. A physical signal for private access.</h2>
-                    <a href="{{ route('cards.index') }}" class="mt-7 inline-flex bg-amber-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-amber-200">Explore card designs</a>
+                    <a href="{{ route('cards.index') }}" class="mt-7 inline-flex bg-amber-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-amber-200">View Card Specifications</a>
                     <div class="mt-8 grid gap-3 sm:grid-cols-2">
                         <div class="border border-white/10 bg-white/[0.04] p-4">
                             <p class="text-2xl font-light text-white">$15</p>
