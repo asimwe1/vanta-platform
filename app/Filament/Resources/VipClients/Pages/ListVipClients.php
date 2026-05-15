@@ -25,18 +25,18 @@ class ListVipClients extends ListRecords
         $capacityReached = $brand
             && filled($brand->vip_capacity)
             && $brand->vipClients()->count() >= $brand->vip_capacity;
-        $waitlistVisible = $brand
-            && $brand->subscription_tier === 'tier_1'
-            && $brand->vipClients()->count() >= 15
+        $capacityWarningVisible = $brand
+            && filled($brand->vip_capacity)
+            && $brand->vipClients()->count() >= (int) ceil($brand->vip_capacity * 0.8)
             && ! $capacityReached;
 
         return [
-            Action::make('waitlist')
-                ->label('Waitlist mode: ' . ($brand?->vipClients()->count() ?? 0) . ' / ' . ($brand?->vip_capacity ?? 20))
+            Action::make('capacityWarning')
+                ->label('Capacity watch: ' . ($brand?->vipClients()->count() ?? 0) . ' / ' . ($brand?->vip_capacity ?? 20))
                 ->color('warning')
                 ->icon(Heroicon::OutlinedExclamationTriangle)
                 ->disabled()
-                ->visible($waitlistVisible),
+                ->visible($capacityWarningVisible),
             CreateAction::make()
                 ->label('New VIP profile')
                 ->icon(Heroicon::Plus)

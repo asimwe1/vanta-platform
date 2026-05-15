@@ -136,7 +136,7 @@ class BrandForm
                         ->numeric()
                         ->minValue(1)
                         ->default(fn ($get): int => SubscriptionTiers::capacityFor($get('subscription_tier') ?: 'tier_1') ?? 999999)
-                        ->helperText('Vanta One: 20, Vanta Luxe: 250, Vanta Noir can be set high or handled manually.'),
+                        ->helperText('Vanta One: 20, Vanta Luxe: 125, Vanta Noir can be set high or handled manually.'),
                     TextInput::make('card_stock_remaining')
                         ->label('Metal card stock')
                         ->numeric()
