@@ -5,7 +5,7 @@
 
 @php
     $isFilament = $surface === 'filament';
-    $shouldRender = ! $brand || ($brand->subscription_tier ?? 'tier_1') === 'tier_1';
+    $shouldRender = ! $brand || ($brand->branding_visible ?? (($brand->subscription_tier ?? 'tier_1') === 'tier_1'));
 @endphp
 
 @if ($shouldRender)

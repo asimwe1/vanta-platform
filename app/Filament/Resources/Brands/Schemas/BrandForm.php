@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Brands\Schemas;
 use App\Support\DefaultSchemas;
 use App\Support\SubscriptionTiers;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TagsInput;
@@ -39,6 +40,12 @@ class BrandForm
                         ->required()
                         ->alphaDash()
                         ->unique(ignoreRecord: true),
+                    FileUpload::make('logo_path')
+                        ->label('Brand logo')
+                        ->directory('brand-logos')
+                        ->image()
+                        ->imageEditor()
+                        ->helperText('Used for white-label favicon and brand surface treatment.'),
                     Select::make('category')
                         ->label('Business type')
                         ->options(DefaultSchemas::categories())
@@ -64,6 +71,10 @@ class BrandForm
                     Toggle::make('is_active')
                         ->label('Active brand')
                         ->helperText('Inactive brands stay in the archive but are kept out of daily workflows.')
+                        ->default(true),
+                    Toggle::make('branding_visible')
+                        ->label('Show Powered by ApheZis')
+                        ->helperText('Vanta One keeps APHEZIS visible. Luxe and Noir can run as private-label surfaces.')
                         ->default(true),
                 ]),
             Section::make('Client request fields')
@@ -118,6 +129,7 @@ class BrandForm
                         ->afterStateUpdated(function ($state, $set): void {
                             $set('vip_capacity', SubscriptionTiers::capacityFor($state ?: 'tier_1') ?? 500);
                             $set('data_retention_days', SubscriptionTiers::retentionDaysFor($state ?: 'tier_1') ?? 3650);
+                            $set('branding_visible', ($state ?: 'tier_1') === 'tier_1');
                         })
                         ->required()
                         ->helperText('Controls capacity, insight access, and retention positioning.'),

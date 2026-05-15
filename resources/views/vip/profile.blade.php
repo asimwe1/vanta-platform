@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $vipClient->full_name }} · VIP Profile</title>
+    @if(! ($brand->branding_visible ?? true) && filled($brand->logo_path))
+        <link rel="icon" href="{{ asset('storage/' . $brand->logo_path) }}">
+    @endif
     @vite(['resources/css/app.css'])
 </head>
 <body class="bg-zinc-950 text-white antialiased">
@@ -15,8 +18,12 @@
 
         <header class="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
             <a href="{{ route('landing') }}" class="flex items-center gap-3" aria-label="Vanta Platform home">
-                <span class="grid size-9 place-items-center border border-amber-300/60 bg-amber-300 text-sm font-semibold text-zinc-950">V</span>
-                <span class="text-sm font-medium uppercase tracking-[0.28em] text-zinc-200">Vanta</span>
+                @if(! ($brand->branding_visible ?? true) && filled($brand->logo_path))
+                    <img src="{{ asset('storage/' . $brand->logo_path) }}" alt="{{ $brand->name }}" class="size-9 border border-white/10 object-cover">
+                @else
+                    <span class="grid size-9 place-items-center border border-amber-300/60 bg-amber-300 text-sm font-semibold text-zinc-950">V</span>
+                @endif
+                <span class="text-sm font-medium uppercase tracking-[0.28em] text-zinc-200">{{ ($brand->branding_visible ?? true) ? 'Vanta' : $brand->name }}</span>
             </a>
             <a href="{{ url('/admin/login') }}" class="border border-white/20 px-4 py-2 text-sm font-medium text-white transition hover:border-amber-300 hover:text-amber-200">Admin</a>
         </header>

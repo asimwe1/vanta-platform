@@ -68,6 +68,7 @@ class EditBrand extends EditRecord
         $data['subscription_tier'] ??= 'tier_1';
         $data['vip_capacity'] ??= SubscriptionTiers::capacityFor($data['subscription_tier']) ?? 500;
         $data['data_retention_days'] ??= SubscriptionTiers::retentionDaysFor($data['subscription_tier']) ?? 3650;
+        $data['branding_visible'] ??= $data['subscription_tier'] === 'tier_1';
 
         return $data;
     }

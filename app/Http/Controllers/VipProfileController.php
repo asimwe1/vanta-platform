@@ -46,6 +46,7 @@ class VipProfileController extends Controller
             ->firstOrFail();
 
         $vipClient->forceFill(['last_login_at' => now()])->save();
+        $this->logVisit($request, $vipClient);
         $request->session()->put($this->sessionAccessKey($vipClient), true);
 
         return $this->profileView($vipClient);
@@ -61,6 +62,7 @@ class VipProfileController extends Controller
             ->firstOrFail();
 
         $vipClient->forceFill(['last_login_at' => now()])->save();
+        $this->logVisit($request, $vipClient);
         $request->session()->put($this->sessionAccessKey($vipClient), true);
 
         return $this->profileView($vipClient);
@@ -147,6 +149,15 @@ class VipProfileController extends Controller
             'formSchema' => $this->schemaFor($vipClient),
             'isDemo' => false,
             'pendingOtp' => session()->has($this->sessionPayloadKey($vipClient)),
+        ]);
+    }
+
+    protected function logVisit(Request $request, VipClient $vipClient): void
+    {
+        $vipClient->visitLogs()->create([
+            'user_agent' => $request->userAgent(),
+            'ip_address' => $request->ip(),
+            'visited_at' => now(),
         ]);
     }
 

@@ -25,6 +25,9 @@ class VipClient extends Model
         'otp_code',
         'otp_expires_at',
         'last_login_at',
+        'churn_risk_status',
+        'churn_risk_reason',
+        'churn_checked_at',
     ];
 
     protected function casts(): array
@@ -34,6 +37,7 @@ class VipClient extends Model
             'is_active' => 'boolean',
             'otp_expires_at' => 'datetime',
             'last_login_at' => 'datetime',
+            'churn_checked_at' => 'datetime',
         ];
     }
 

@@ -24,6 +24,7 @@ class Brand extends Model
         'website',
         'description',
         'is_active',
+        'branding_visible',
         'subscription_status',
         'subscription_tier',
         'vip_capacity',
@@ -38,6 +39,7 @@ class Brand extends Model
             'form_schema' => 'array',
             'color_config' => 'array',
             'is_active' => 'boolean',
+            'branding_visible' => 'boolean',
             'subscription_end_date' => 'date',
         ];
     }

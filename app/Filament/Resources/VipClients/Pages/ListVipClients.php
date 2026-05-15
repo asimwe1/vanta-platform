@@ -29,6 +29,9 @@ class ListVipClients extends ListRecords
             && filled($brand->vip_capacity)
             && $brand->vipClients()->count() >= (int) ceil($brand->vip_capacity * 0.8)
             && ! $capacityReached;
+        $luxeWaitlistMode = $brand
+            && $brand->subscription_tier === 'tier_2'
+            && $brand->vipClients()->count() >= 100;
 
         return [
             Action::make('capacityWarning')
@@ -37,11 +40,18 @@ class ListVipClients extends ListRecords
                 ->icon(Heroicon::OutlinedExclamationTriangle)
                 ->disabled()
                 ->visible($capacityWarningVisible),
+            Action::make('manageWaitlist')
+                ->label('Manage waitlist')
+                ->icon(Heroicon::OutlinedQueueList)
+                ->color('warning')
+                ->url(VipClientResource::getUrl('index'))
+                ->visible($luxeWaitlistMode),
             CreateAction::make()
                 ->label('New VIP profile')
                 ->icon(Heroicon::Plus)
                 ->disabled($capacityReached)
-                ->tooltip($capacityReached ? 'Capacity reached. Contact APHEZIS to upgrade this retainer tier.' : null),
+                ->tooltip($capacityReached ? 'Capacity reached. Contact APHEZIS to upgrade this retainer tier.' : null)
+                ->visible(! $luxeWaitlistMode),
         ];
     }
 }
