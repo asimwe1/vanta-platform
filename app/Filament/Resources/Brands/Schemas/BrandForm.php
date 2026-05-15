@@ -39,9 +39,10 @@ class BrandForm
                         ->required()
                         ->maxLength(255),
                     TextInput::make('slug')
-                        ->label('Public slug')
+                        ->label('Public URL')
                         ->placeholder('vanta-atelier')
-                        ->helperText('Used for clean internal references and future public brand URLs.')
+                        ->prefix(fn (): string => rtrim((string) config('app.url'), '/') . '/')
+                        ->helperText('Domain is fixed by Vanta. Edit only the public slug after the slash.')
                         ->prefixIcon(Heroicon::OutlinedLink)
                         ->required()
                         ->alphaDash()

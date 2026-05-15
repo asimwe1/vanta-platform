@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\ClientOtpMail;
+use App\Models\Brand;
 use App\Models\ServiceRequest;
 use App\Models\VipClient;
 use App\Support\DefaultSchemas;
@@ -66,6 +67,24 @@ class VipProfileController extends Controller
         $request->session()->put($this->sessionAccessKey($vipClient), true);
 
         return $this->profileView($vipClient);
+    }
+
+    public function showBrand(string $brandSlug): View
+    {
+        $brand = Brand::query()
+            ->with(['vipClients' => fn ($query) => $query
+                ->where('is_active', true)
+                ->latest()
+                ->limit(3)])
+            ->where('slug', $brandSlug)
+            ->where('is_active', true)
+            ->firstOrFail();
+
+        return view('brand.public', [
+            'brand' => $brand,
+            'formSchema' => $brand->form_schema ?: DefaultSchemas::for($brand->category),
+            'vipClients' => $brand->vipClients,
+        ]);
     }
 
     public function sendOtp(Request $request, string $slug): RedirectResponse

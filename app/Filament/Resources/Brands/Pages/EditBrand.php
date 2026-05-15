@@ -12,7 +12,6 @@ use Filament\Notifications\Notification;
 use Filament\Resources\Pages\EditRecord;
 use Filament\Support\Icons\Heroicon;
 use Illuminate\Contracts\Support\Htmlable;
-use Illuminate\Support\Facades\URL;
 use Throwable;
 
 class EditBrand extends EditRecord
@@ -69,23 +68,7 @@ class EditBrand extends EditRecord
 
     protected function getPublicPreviewUrl(): string
     {
-        $vipClient = $this->record->vipClients()
-            ->where('is_active', true)
-            ->oldest()
-            ->first();
-
-        if (! $vipClient) {
-            return route('vip.profile.demo');
-        }
-
-        return URL::temporarySignedRoute(
-            'vip.profile.brand.show',
-            now()->addMinutes(30),
-            [
-                'brandSlug' => $this->record->slug,
-                'vipSlug' => $vipClient->slug,
-            ],
-        );
+        return route('brand.public.show', ['brandSlug' => $this->record->slug]);
     }
 
     protected function getSaveFormAction(): Action
