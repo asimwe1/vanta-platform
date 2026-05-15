@@ -1,8 +1,10 @@
 <x-filament-panels::page.simple>
     <style>
         .fi-simple-layout {
-            min-height: 100vh;
-            padding: clamp(1rem, 3vw, 2.5rem);
+            --vanta-login-page-pad: clamp(1rem, 3vw, 2.5rem);
+
+            min-height: 100svh;
+            padding: var(--vanta-login-page-pad);
             background:
                 radial-gradient(circle at 14% 18%, rgba(245, 158, 11, 0.18), transparent 30%),
                 radial-gradient(circle at 82% 20%, rgba(20, 184, 166, 0.14), transparent 28%),
@@ -14,8 +16,17 @@
         }
 
         @media (min-width: 1024px) {
+            .fi-simple-layout {
+                --vanta-login-page-pad: 1rem;
+
+                height: 100svh;
+                overflow: hidden;
+            }
+
+            .fi-simple-main-ctn,
             .fi-simple-main {
-                width: min(100%, 1180px);
+                height: 100%;
+                width: 100%;
             }
         }
 
@@ -38,8 +49,14 @@
         }
 
         @media (min-width: 1024px) {
+            .fi-simple-page {
+                height: 100%;
+            }
+
             .fi-simple-page-content {
                 padding: 0;
+                height: calc(100svh - (var(--vanta-login-page-pad) * 2));
+                max-height: calc(100svh - (var(--vanta-login-page-pad) * 2));
             }
         }
 
@@ -83,9 +100,9 @@
 
         @media (min-width: 1024px) {
             .vanta-login-mark {
-                width: 3.75rem;
-                height: 3.75rem;
-                margin-bottom: 1.25rem;
+                width: 3rem;
+                height: 3rem;
+                margin-bottom: 0.75rem;
             }
         }
 
@@ -127,10 +144,9 @@
 
         .vanta-login-shell {
             display: grid;
-            grid-template-columns: 1fr;   /* single column on mobile */
+            grid-template-columns: 1fr;
             width: 100%;
-            min-height: 100vh;
-            gap: 0;                        /* no gap needed when visual is hidden */
+            gap: 0;
         }
 
         .vanta-login-form {
@@ -185,8 +201,9 @@
         }
         @media (min-width: 1024px) {
             .vanta-login-shell {
-                grid-template-columns: minmax(560px, 2fr) minmax(320px, 1fr);
-                min-height: min(720px, calc(100vh - 5rem));
+                grid-template-columns: minmax(0, 4fr) minmax(320px, 3fr);
+                height: 100%;
+                min-height: 0;
                 gap: 0;
             }
 
@@ -194,34 +211,41 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
-                min-height: min(720px, calc(100vh - 5rem));
-                padding: clamp(2.5rem, 4.5vw, 4.5rem);
+                min-height: 0;
+                padding: clamp(1.35rem, 2.4vw, 2.6rem) clamp(1.75rem, 3vw, 3.2rem);
                 background:
                     radial-gradient(circle at 18% 20%, rgba(245, 158, 11, 0.16), transparent 34%),
                     rgba(9, 9, 11, 0.28);
             }
 
             .vanta-login-form-frame {
-                margin-top: 2rem;
-                max-width: 30rem;
+                margin-top: clamp(0.85rem, 1.35vw, 1.2rem);
+                max-width: 29rem;
+            }
+
+            .vanta-login-eyebrow {
+                margin-bottom: 0.45rem;
+                font-size: 0.68rem;
             }
 
             .vanta-login-title {
-                font-size: clamp(3rem, 4.7vw, 5.35rem);
-                max-width: 42rem;
+                font-size: clamp(2.35rem, 3.65vw, 4rem);
+                max-width: 37rem;
             }
 
             .vanta-login-copy {
-                max-width: 39rem;
-                font-size: 1rem;
+                margin-top: 0.75rem;
+                max-width: 35rem;
+                font-size: 0.9rem;
+                line-height: 1.6;
             }
 
             .vanta-login-visual {
                 display: flex;
                 flex-direction: column;
                 justify-content: stretch;
-                min-height: min(720px, calc(100vh - 5rem));
-                padding: 1rem;
+                min-height: 0;
+                padding: clamp(0.8rem, 1.2vw, 1rem);
                 border-left: 1px solid rgba(255, 255, 255, 0.10);
                 background:
                     linear-gradient(180deg, rgba(252, 211, 77, 0.12), rgba(20, 184, 166, 0.08)),
@@ -287,9 +311,9 @@
             }
 
             .vanta-card-title {
-                margin-top: 2.8rem;
+                margin-top: clamp(1.8rem, 4vh, 2.8rem);
                 color: #ffffff;
-                font-size: 1.55rem;
+                font-size: clamp(1.2rem, 2vw, 1.55rem);
                 font-weight: 300;
                 letter-spacing: 0;
                 line-height: 1.05;
@@ -350,23 +374,35 @@
             }
 
             .vanta-login-trust {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 0.55rem;
+                margin: 0;
                 max-width: 35rem;
+                font-size: 0.72rem;
             }
 
             .vanta-login-trust span {
-                padding: 0.85rem 0.95rem;
+                padding: 0.62rem 0.7rem;
             }
 
             .vanta-login-line {
-                margin-bottom: 2rem;
+                margin-bottom: 0.85rem;
             }
 
             .vanta-login-panel-meta {
-                margin-top: 2rem;
+                margin-top: clamp(0.9rem, 1.5vw, 1.25rem);
                 color: #71717a;
-                font-size: 0.78rem;
+                font-size: 0.68rem;
                 letter-spacing: 0.2em;
                 text-transform: uppercase;
+            }
+
+            .vanta-login-panel-meta p {
+                margin: 0.75rem 0 0;
+            }
+
+            .vanta-login-powered {
+                margin-top: 0.65rem;
             }
         }
 
@@ -414,6 +450,9 @@
                     <span>Command Center SLA</span>
                 </div>
                 <p>Protected administrative surface</p>
+                <div class="vanta-login-powered">
+                    @include('partials.powered-by', ['surface' => 'filament'])
+                </div>
             </div>
         </div>
 
