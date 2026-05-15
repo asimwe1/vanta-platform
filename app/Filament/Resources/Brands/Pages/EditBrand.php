@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Brands\Pages;
 
 use App\Filament\Resources\Brands\BrandResource;
+use App\Support\BrandAdminProvisioner;
 use App\Support\DefaultSchemas;
 use App\Support\SubscriptionTiers;
 use Filament\Actions\Action;
@@ -15,6 +16,8 @@ use Illuminate\Contracts\Support\Htmlable;
 class EditBrand extends EditRecord
 {
     protected static string $resource = BrandResource::class;
+
+    protected ?array $brandAdminAccess = null;
 
     public function getTitle(): string|Htmlable
     {
@@ -55,6 +58,8 @@ class EditBrand extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
+        $this->brandAdminAccess = BrandAdminProvisioner::extractAccessData($data);
+
         $data['color_config'] = [
             'primary' => $data['primary_color'] ?? '#BFA46F',
             'accent' => $data['accent_color'] ?? '#111111',
@@ -65,5 +70,10 @@ class EditBrand extends EditRecord
         $data['data_retention_days'] ??= SubscriptionTiers::retentionDaysFor($data['subscription_tier']) ?? 3650;
 
         return $data;
+    }
+
+    protected function afterSave(): void
+    {
+        BrandAdminProvisioner::provision($this->record, $this->brandAdminAccess);
     }
 }

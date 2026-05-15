@@ -9,6 +9,7 @@ use App\Filament\Resources\VipClients\VipClientResource;
 use App\Models\Brand;
 use App\Models\ServiceRequest;
 use App\Models\VipClient;
+use App\Support\SubscriptionTiers;
 use Filament\Actions\Action;
 use Filament\Pages\Dashboard as BaseDashboard;
 use Filament\Support\Icons\Heroicon;
@@ -84,7 +85,7 @@ class Dashboard extends BaseDashboard
         return [
             'lensLabel' => $brandId ? ($user->brand?->name . ' lens') : 'System-wide lens',
             'currentBrand' => $currentBrand,
-            'tierLabel' => $currentBrand ? str($currentBrand->subscription_tier ?: 'tier_1')->replace('_', ' ')->title() : 'Super Admin',
+            'tierLabel' => $currentBrand ? (SubscriptionTiers::options()[$currentBrand->subscription_tier ?: 'tier_1'] ?? 'Vanta One - Tier I') : 'Super Admin',
             'cardOrderCreateUrl' => CardOrderResource::getUrl('create'),
             'cardOrderIndexUrl' => CardOrderResource::getUrl('index'),
             'showAdvancedInsights' => ! $currentBrand || in_array($currentBrand->subscription_tier, ['tier_2', 'tier_3'], true),
@@ -108,7 +109,7 @@ class Dashboard extends BaseDashboard
             'billingMetrics' => $currentBrand ? [
                 [
                     'label' => 'Retainer tier',
-                    'value' => str($currentBrand->subscription_tier ?: 'tier_1')->replace('_', ' ')->title(),
+                    'value' => SubscriptionTiers::options()[$currentBrand->subscription_tier ?: 'tier_1'] ?? 'Vanta One - Tier I',
                     'detail' => $currentBrand->subscription_status ?: 'active',
                 ],
                 [

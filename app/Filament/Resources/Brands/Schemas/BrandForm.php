@@ -115,6 +115,10 @@ class BrandForm
                         ->options(SubscriptionTiers::options())
                         ->default('tier_1')
                         ->live()
+                        ->afterStateUpdated(function ($state, $set): void {
+                            $set('vip_capacity', SubscriptionTiers::capacityFor($state ?: 'tier_1') ?? 999999);
+                            $set('data_retention_days', SubscriptionTiers::retentionDaysFor($state ?: 'tier_1') ?? 3650);
+                        })
                         ->required()
                         ->helperText('Controls capacity, insight access, and retention positioning.'),
                     Select::make('subscription_status')
@@ -132,7 +136,7 @@ class BrandForm
                         ->numeric()
                         ->minValue(1)
                         ->default(fn ($get): int => SubscriptionTiers::capacityFor($get('subscription_tier') ?: 'tier_1') ?? 999999)
-                        ->helperText('Tier I: 50, Tier II: 250, Tier III can be set high or handled manually.'),
+                        ->helperText('Vanta One: 20, Vanta Luxe: 250, Vanta Noir can be set high or handled manually.'),
                     TextInput::make('card_stock_remaining')
                         ->label('Metal card stock')
                         ->numeric()
@@ -147,6 +151,34 @@ class BrandForm
                     DatePicker::make('subscription_end_date')
                         ->label('Subscription end date')
                         ->helperText('Manual billing date used for the SLA/security subscription view.'),
+                ]),
+            Section::make('Brand admin access')
+                ->description('Create or update the manager account that can access this brand lens only.')
+                ->icon(Heroicon::OutlinedKey)
+                ->visible(fn (): bool => auth()->user()?->isSuperAdmin() ?? false)
+                ->columns(2)
+                ->schema([
+                    Toggle::make('create_brand_admin')
+                        ->label('Create or update brand admin')
+                        ->default(false)
+                        ->dehydrated(),
+                    Toggle::make('send_brand_admin_password')
+                        ->label('Email a new password')
+                        ->default(true)
+                        ->helperText('A generated temporary password is emailed to the admin. They can change it after logging in.')
+                        ->dehydrated(),
+                    TextInput::make('brand_admin_name')
+                        ->label('Admin name')
+                        ->placeholder('Brand manager')
+                        ->required(fn ($get): bool => (bool) $get('create_brand_admin'))
+                        ->maxLength(255)
+                        ->dehydrated(),
+                    TextInput::make('brand_admin_email')
+                        ->label('Admin email')
+                        ->email()
+                        ->required(fn ($get): bool => (bool) $get('create_brand_admin'))
+                        ->maxLength(255)
+                        ->dehydrated(),
                 ]),
         ])->columns(1);
     }

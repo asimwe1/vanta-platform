@@ -29,10 +29,10 @@
                 <div class="max-w-2xl">
                     <p class="mb-5 text-xs font-semibold uppercase tracking-[0.36em] text-amber-200">Clienteling control center</p>
                     <h1 class="text-5xl font-light leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl">
-                        VIP operations for brands that move personally.
+                        VIP access, requests, and cards in one command view.
                     </h1>
-                    <p class="mt-7 max-w-xl text-lg leading-8 text-zinc-300">
-                        Manage private client records, signed VIP access, email OTP confirmations, and metal card procurement from one managed APHEZIS infrastructure.
+                    <p class="mt-7 max-w-lg text-lg leading-8 text-zinc-300">
+                        A private operating layer for premium brands: client profiles, verified requests, insights, and metal card stock.
                     </p>
                     <div class="mt-9 flex flex-col gap-3 sm:flex-row">
                         <a href="#plans" class="bg-amber-300 px-5 py-3 text-center text-sm font-semibold text-zinc-950 transition hover:bg-amber-200">Explore plans</a>
@@ -70,21 +70,21 @@
                                 <div class="grid grid-cols-[1fr_auto] gap-4 border border-white/10 bg-white/[0.04] p-4">
                                     <div>
                                         <p class="text-sm font-medium text-white">Amina R.</p>
-                                        <p class="mt-1 text-sm text-zinc-400">New arrival preview and fitting notes ready.</p>
+                                        <p class="mt-1 text-sm text-zinc-400">Fitting request · OTP verified</p>
                                     </div>
                                     <span class="text-xs uppercase tracking-[0.18em] text-amber-200">Gold</span>
                                 </div>
                                 <div class="grid grid-cols-[1fr_auto] gap-4 border border-white/10 bg-white/[0.04] p-4">
                                     <div>
                                         <p class="text-sm font-medium text-white">Cedric M.</p>
-                                        <p class="mt-1 text-sm text-zinc-400">Membership profile updated for Kigali visit.</p>
+                                        <p class="mt-1 text-sm text-zinc-400">Airport pickup · Pending</p>
                                     </div>
                                     <span class="text-xs uppercase tracking-[0.18em] text-teal-200">Platinum</span>
                                 </div>
                                 <div class="grid grid-cols-[1fr_auto] gap-4 border border-white/10 bg-white/[0.04] p-4">
                                     <div>
                                         <p class="text-sm font-medium text-white">Nadia K.</p>
-                                        <p class="mt-1 text-sm text-zinc-400">Concierge team assigned a private follow-up.</p>
+                                        <p class="mt-1 text-sm text-zinc-400">Card activated · Live profile</p>
                                     </div>
                                     <span class="text-xs uppercase tracking-[0.18em] text-zinc-300">Black</span>
                                 </div>
@@ -95,33 +95,103 @@
             </div>
         </section>
 
+        <section class="relative z-10 border-t border-white/10 bg-zinc-950 px-6 py-12">
+            <div class="mx-auto grid max-w-6xl gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-4">
+                <div class="bg-zinc-950 p-5">
+                    <p class="text-xs uppercase tracking-[0.24em] text-amber-200">01</p>
+                    <p class="mt-3 text-lg font-light text-white">VIP profile</p>
+                    <div class="mt-5 h-2 w-3/4 bg-white/10"></div>
+                    <div class="mt-2 h-2 w-1/2 bg-amber-200/40"></div>
+                </div>
+                <div class="bg-zinc-950 p-5">
+                    <p class="text-xs uppercase tracking-[0.24em] text-amber-200">02</p>
+                    <p class="mt-3 text-lg font-light text-white">Magic link</p>
+                    <div class="mt-5 grid grid-cols-3 gap-2">
+                        <span class="h-8 border border-white/10 bg-white/[0.04]"></span>
+                        <span class="h-8 border border-amber-200/40 bg-amber-200/10"></span>
+                        <span class="h-8 border border-white/10 bg-white/[0.04]"></span>
+                    </div>
+                </div>
+                <div class="bg-zinc-950 p-5">
+                    <p class="text-xs uppercase tracking-[0.24em] text-amber-200">03</p>
+                    <p class="mt-3 text-lg font-light text-white">OTP request</p>
+                    <div class="mt-5 flex gap-2">
+                        <span class="size-9 border border-emerald-300/40 bg-emerald-300/10"></span>
+                        <span class="size-9 border border-emerald-300/40 bg-emerald-300/10"></span>
+                        <span class="size-9 border border-emerald-300/40 bg-emerald-300/10"></span>
+                    </div>
+                </div>
+                <div class="bg-zinc-950 p-5">
+                    <p class="text-xs uppercase tracking-[0.24em] text-amber-200">04</p>
+                    <p class="mt-3 text-lg font-light text-white">Card stock</p>
+                    <div class="mt-5 aspect-[1.58/1] border border-amber-200/30 bg-[linear-gradient(135deg,#050505,#262626_45%,#0b0b0b)]"></div>
+                </div>
+            </div>
+        </section>
+
         <section id="plans" class="relative z-10 border-t border-white/10 bg-zinc-950 px-6 py-20">
             <div class="mx-auto max-w-6xl">
                 <p class="text-xs font-semibold uppercase tracking-[0.34em] text-amber-200">SLA and security subscription</p>
                 <div class="mt-4 grid gap-5 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-                    <h2 class="text-4xl font-light leading-tight text-white sm:text-5xl">Predictable retainers for high-value client infrastructure.</h2>
-                    <p class="text-base leading-8 text-zinc-300">
-                        APHEZIS Vanta is priced like an operational utility: hosting, security, OTP, updates, VIP capacity, and quarterly insight support under one manual SLA.
-                    </p>
+                    <h2 class="text-4xl font-light leading-tight text-white sm:text-5xl">Pick the operating capacity.</h2>
+                    <div class="grid gap-3 sm:grid-cols-3">
+                        <div class="border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-zinc-300">Security</div>
+                        <div class="border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-zinc-300">Hosting</div>
+                        <div class="border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-zinc-300">VIP capacity</div>
+                    </div>
                 </div>
 
                 <div class="mt-10 grid gap-4 lg:grid-cols-3">
                     <article class="border border-white/10 bg-white/[0.04] p-6">
-                        <p class="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200">Tier I</p>
-                        <h3 class="mt-4 text-2xl font-light text-white">Entry Concierge</h3>
-                        <p class="mt-3 text-sm leading-7 text-zinc-400">Up to 50 VIP profiles, email OTP, standard schema, and 30-day data logs.</p>
-                        <p class="mt-6 text-3xl font-light text-white">$100<span class="text-sm text-zinc-500"> / month guide</span></p>
+                        <div class="flex items-center justify-between">
+                            <p class="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200">Tier I</p>
+                            <span class="border border-white/10 px-2 py-1 text-xs text-zinc-400">20 VIPs</span>
+                        </div>
+                        <h3 class="mt-4 text-2xl font-light text-white">Vanta One</h3>
+                        <p class="mt-2 text-sm text-zinc-400">Boutique elite infrastructure</p>
+                        <div class="mt-6 space-y-2">
+                            <div class="h-2 w-4/5 bg-white/10"></div>
+                            <div class="h-2 w-2/3 bg-amber-200/30"></div>
+                            <div class="h-2 w-1/2 bg-white/10"></div>
+                        </div>
+                        <p class="mt-5 text-xs uppercase tracking-[0.22em] text-zinc-500">Powered by ApheZis visible</p>
+                        <p class="mt-6 text-3xl font-light text-white">$50<span class="text-sm text-zinc-500"> / month guide</span></p>
                     </article>
                     <article class="border border-amber-300/40 bg-amber-300/[0.08] p-6 shadow-2xl shadow-amber-950/20">
-                        <p class="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200">Tier II</p>
-                        <h3 class="mt-4 text-2xl font-light text-white">Elite Management</h3>
-                        <p class="mt-3 text-sm leading-7 text-zinc-300">Up to 250 VIP profiles, dynamic presets, Vanta View analytics, and 1-year data logs.</p>
+                        <div class="flex items-center justify-between">
+                            <p class="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200">Tier II</p>
+                            <span class="border border-amber-200/30 px-2 py-1 text-xs text-amber-100">250 VIPs</span>
+                        </div>
+                        <h3 class="mt-4 text-2xl font-light text-white">Vanta Luxe</h3>
+                        <p class="mt-2 text-sm text-zinc-300">Insight-led client operations</p>
+                        <div class="mt-6 grid grid-cols-3 gap-2">
+                            <div class="h-14 border border-amber-200/20 bg-amber-200/10"></div>
+                            <div class="h-14 border border-amber-200/20 bg-amber-200/10"></div>
+                            <div class="h-14 border border-amber-200/20 bg-amber-200/10"></div>
+                        </div>
                         <p class="mt-6 text-3xl font-light text-white">$300<span class="text-sm text-zinc-500"> / month guide</span></p>
                     </article>
                     <article class="border border-white/10 bg-white/[0.04] p-6">
-                        <p class="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200">Tier III</p>
-                        <h3 class="mt-4 text-2xl font-light text-white">Enterprise</h3>
-                        <p class="mt-3 text-sm leading-7 text-zinc-400">Unlimited VIPs, SMS OTP option, API access, priority support, and dedicated reporting.</p>
+                        <div class="flex items-center justify-between">
+                            <p class="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200">Tier III</p>
+                            <span class="border border-white/10 px-2 py-1 text-xs text-zinc-400">Unlimited</span>
+                        </div>
+                        <h3 class="mt-4 text-2xl font-light text-white">Vanta Noir</h3>
+                        <p class="mt-2 text-sm text-zinc-400">Fully private enterprise layer</p>
+                        <div class="mt-6 grid gap-2">
+                            <div class="flex items-center gap-2">
+                                <span class="size-3 bg-teal-200"></span>
+                                <span class="h-2 flex-1 bg-white/10"></span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="size-3 bg-amber-200"></span>
+                                <span class="h-2 flex-1 bg-white/10"></span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="size-3 bg-zinc-300"></span>
+                                <span class="h-2 flex-1 bg-white/10"></span>
+                            </div>
+                        </div>
                         <p class="mt-6 text-3xl font-light text-white">Custom<span class="text-sm text-zinc-500"> / quote</span></p>
                     </article>
                 </div>
@@ -133,17 +203,20 @@
                 <div>
                     <p class="text-xs font-semibold uppercase tracking-[0.34em] text-amber-200">Hardware procurement</p>
                     <h2 class="mt-4 text-4xl font-light leading-tight text-white sm:text-5xl">Beyond plastic. A physical signal for private access.</h2>
-                    <p class="mt-5 text-base leading-8 text-zinc-300">
-                        Brands can order replenishment cards from the command center when stock runs low. Standard finishes use fixed pricing, while custom laser etching, artwork, and special fabrication move through a manual quote.
-                    </p>
                     <a href="{{ route('cards.index') }}" class="mt-7 inline-flex bg-amber-300 px-5 py-3 text-sm font-semibold text-zinc-950 transition hover:bg-amber-200">Explore card designs</a>
-                    <div class="mt-8 grid gap-4 text-sm text-zinc-400 sm:grid-cols-2">
-                        <p><span class="text-zinc-100">Standard designs</span><br>Matte Black, Brushed Gold, and Graphite Steel at a fixed card rate.</p>
-                        <p><span class="text-zinc-100">Custom design requests</span><br>Upload artwork, request a finish, and receive a quoted production price.</p>
+                    <div class="mt-8 grid gap-3 sm:grid-cols-2">
+                        <div class="border border-white/10 bg-white/[0.04] p-4">
+                            <p class="text-2xl font-light text-white">15</p>
+                            <p class="mt-1 text-xs uppercase tracking-[0.22em] text-zinc-400">USD / standard card</p>
+                        </div>
+                        <div class="border border-white/10 bg-white/[0.04] p-4">
+                            <p class="text-2xl font-light text-white">Quote</p>
+                            <p class="mt-1 text-xs uppercase tracking-[0.22em] text-zinc-400">Custom finishes</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="border border-white/10 bg-white/[0.05] p-6">
+                <div class="grid gap-4">
                     <div class="relative aspect-[1.58/1] overflow-hidden border border-amber-200/30 bg-[linear-gradient(135deg,#060606,#262626_45%,#0b0b0b)] p-6 shadow-2xl shadow-black/40">
                         <div class="absolute inset-x-0 top-0 h-px bg-amber-200/60"></div>
                         <div class="flex h-full flex-col justify-between">
@@ -157,18 +230,20 @@
                             </div>
                         </div>
                     </div>
-                    <p class="mt-5 text-sm leading-7 text-zinc-400">
-                        The platform tracks remaining card stock and turns fulfillment into inventory, so procurement stays connected to VIP onboarding.
-                    </p>
+                    <div class="grid grid-cols-3 gap-3">
+                        <div class="aspect-[1.58/1] border border-white/10 bg-[linear-gradient(135deg,#050505,#242426_54%,#09090b)]"></div>
+                        <div class="aspect-[1.58/1] border border-white/10 bg-[linear-gradient(135deg,#4a320e,#d6a647_46%,#120d05)]"></div>
+                        <div class="aspect-[1.58/1] border border-white/10 bg-[linear-gradient(135deg,#111827,#52525b_48%,#09090b)]"></div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="relative z-10 border-t border-white/10 bg-zinc-950 px-6 py-10">
-            <div class="mx-auto grid max-w-6xl gap-6 text-sm text-zinc-400 md:grid-cols-3">
-                <p><span class="text-zinc-100">Magic-link VIP access</span><br>Signed URLs remove passwords while OTP protects high-value actions.</p>
-                <p><span class="text-zinc-100">Vanta View insights</span><br>Activity signals become monthly briefing points for retention and upsell.</p>
-                <p><span class="text-zinc-100">Manual billing control</span><br>Capacity, subscription dates, and card stock stay managed without payment gateway friction.</p>
+            <div class="mx-auto grid max-w-6xl gap-px overflow-hidden border border-white/10 bg-white/10 text-sm md:grid-cols-3">
+                <div class="bg-zinc-950 p-5"><span class="text-zinc-100">Magic links</span><br><span class="text-zinc-500">No VIP passwords</span></div>
+                <div class="bg-zinc-950 p-5"><span class="text-zinc-100">Vanta View</span><br><span class="text-zinc-500">Usage signals</span></div>
+                <div class="bg-zinc-950 p-5"><span class="text-zinc-100">Manual billing</span><br><span class="text-zinc-500">Capacity and stock</span></div>
             </div>
             <div class="mx-auto mt-8 flex max-w-6xl justify-end">
                 @include('partials.powered-by')

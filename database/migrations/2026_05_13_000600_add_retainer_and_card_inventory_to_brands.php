@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::table('brands', function (Blueprint $table) {
             $table->string('subscription_tier')->default('tier_1')->after('subscription_status');
-            $table->unsignedInteger('vip_capacity')->default(50)->after('subscription_tier');
+            $table->unsignedInteger('vip_capacity')->default(20)->after('subscription_tier');
             $table->date('subscription_end_date')->nullable()->after('vip_capacity');
             $table->unsignedInteger('card_stock_remaining')->default(0)->after('subscription_end_date');
             $table->unsignedSmallInteger('data_retention_days')->default(30)->after('card_stock_remaining');

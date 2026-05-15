@@ -134,7 +134,7 @@
         </section>
 
         <footer class="relative z-10 mx-auto flex max-w-6xl justify-end px-6 pb-8">
-            @include('partials.powered-by')
+            @include('partials.powered-by', ['brand' => $brand])
         </footer>
     </main>
 </body>

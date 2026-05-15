@@ -56,9 +56,12 @@ class VipClientsTable
                     ->modalSubmitAction(false)
                     ->modalContent(fn ($record) => view('filament.actions.magic-link', [
                         'url' => URL::temporarySignedRoute(
-                            'vip.profile.show',
+                            'vip.profile.brand.show',
                             now()->addDays(30),
-                            ['slug' => $record->slug],
+                            [
+                                'brandSlug' => $record->brand->slug,
+                                'vipSlug' => $record->slug,
+                            ],
                         ),
                     ])),
                 EditAction::make()

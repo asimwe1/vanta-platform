@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Brands\Tables;
 
+use App\Support\SubscriptionTiers;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -31,7 +32,7 @@ class BrandsTable
                     ->color('gray'),
                 TextColumn::make('subscription_tier')
                     ->label('Retainer')
-                    ->formatStateUsing(fn (?string $state): string => str($state ?: 'tier_1')->replace('_', ' ')->title())
+                    ->formatStateUsing(fn (?string $state): string => SubscriptionTiers::options()[$state ?: 'tier_1'] ?? str($state ?: 'tier_1')->replace('_', ' ')->title())
                     ->badge()
                     ->color('warning'),
                 TextColumn::make('vip_capacity')
