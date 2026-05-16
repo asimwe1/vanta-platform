@@ -10,12 +10,12 @@ on:
       target:
         description: 'Branch or commit SHA to tag'
         required: true
-        default: dev-branch
+        default: master
         type: string
       prerelease:
         description: 'Mark this release as a prerelease'
         required: true
-        default: true
+        default: false
         type: boolean
       notes:
         description: 'Release notes'
@@ -48,6 +48,14 @@ jobs:
         with:
           ref: ${{ inputs.target }}
           fetch-depth: 0
+
+      - name: Ensure target is on master
+        run: |
+          git fetch origin master --prune
+          if ! git merge-base --is-ancestor HEAD origin/master; then
+            echo "Release targets must be master or a commit contained in master."
+            exit 1
+          fi
 
       - name: Configure Git author
         run: |

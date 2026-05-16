@@ -38,6 +38,11 @@
                         <a href="#plans" class="bg-amber-300 px-5 py-3 text-center text-sm font-semibold text-zinc-950 transition hover:bg-amber-200">Request Executive Walkthrough</a>
                         <a href="{{ route('cards.index') }}" class="border border-white/20 px-5 py-3 text-center text-sm font-semibold text-white transition hover:border-white/50">View Card Specifications</a>
                     </div>
+                    <div class="mt-8 grid max-w-xl gap-3 text-xs uppercase tracking-[0.2em] text-zinc-400 sm:grid-cols-3">
+                        <span class="border border-white/10 bg-white/[0.04] px-3 py-3">Demo route live</span>
+                        <span class="border border-white/10 bg-white/[0.04] px-3 py-3">Signed access built</span>
+                        <span class="border border-white/10 bg-white/[0.04] px-3 py-3">OTP gate wired</span>
+                    </div>
                 </div>
 
                 <div class="relative">
@@ -125,6 +130,59 @@
                     <p class="text-xs uppercase tracking-[0.24em] text-amber-200">04</p>
                     <p class="mt-3 text-lg font-light text-white">Hardware Assets</p>
                     <div class="mt-5 aspect-[1.58/1] border border-amber-200/30 bg-[linear-gradient(135deg,#050505,#262626_45%,#0b0b0b)]"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="relative z-10 border-t border-white/10 bg-zinc-950 px-6 py-16">
+            <div class="mx-auto max-w-6xl">
+                <div class="grid gap-5 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+                    <div>
+                        <p class="text-xs font-semibold uppercase tracking-[0.34em] text-amber-200">Operational proof</p>
+                        <h2 class="mt-4 text-4xl font-light leading-tight text-white sm:text-5xl">Built surfaces a buyer can inspect.</h2>
+                    </div>
+                    <p class="max-w-2xl text-base leading-8 text-zinc-300">
+                        Vanta is structured as a working command system: public brand pages, private signed VIP links, email OTP verification, dynamic request forms, card ordering, and release-managed deployment.
+                    </p>
+                </div>
+
+                <div class="mt-10 grid gap-px overflow-hidden border border-white/10 bg-white/10 lg:grid-cols-4">
+                    <article class="bg-zinc-950 p-5">
+                        <div class="flex items-center justify-between gap-3">
+                            <p class="text-xs uppercase tracking-[0.24em] text-zinc-500">Surface</p>
+                            <span class="bg-emerald-300 px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-emerald-950">Live</span>
+                        </div>
+                        <h3 class="mt-5 text-xl font-light text-white">Public profile</h3>
+                        <p class="mt-3 text-sm leading-6 text-zinc-400">Brand slugs resolve as public recognition pages with tier-aware APHEZIS branding.</p>
+                        <a href="{{ route('vip.profile.demo') }}" class="mt-5 inline-flex text-sm font-semibold text-amber-200 hover:text-amber-100">Open demo</a>
+                    </article>
+
+                    <article class="bg-zinc-950 p-5">
+                        <div class="flex items-center justify-between gap-3">
+                            <p class="text-xs uppercase tracking-[0.24em] text-zinc-500">Security</p>
+                            <span class="border border-amber-200/40 px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-amber-200">Verified</span>
+                        </div>
+                        <h3 class="mt-5 text-xl font-light text-white">Magic link + OTP</h3>
+                        <p class="mt-3 text-sm leading-6 text-zinc-400">VIPs enter through temporary signed URLs and confirm high-value requests with a 6-digit email code.</p>
+                    </article>
+
+                    <article class="bg-zinc-950 p-5">
+                        <div class="flex items-center justify-between gap-3">
+                            <p class="text-xs uppercase tracking-[0.24em] text-zinc-500">Operations</p>
+                            <span class="border border-white/15 px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-zinc-300">Admin</span>
+                        </div>
+                        <h3 class="mt-5 text-xl font-light text-white">Brand-scoped console</h3>
+                        <p class="mt-3 text-sm leading-6 text-zinc-400">Brand managers see their own VIPs, requests, capacity, card inventory, and public page controls.</p>
+                    </article>
+
+                    <article class="bg-zinc-950 p-5">
+                        <div class="flex items-center justify-between gap-3">
+                            <p class="text-xs uppercase tracking-[0.24em] text-zinc-500">Release</p>
+                            <span class="border border-teal-200/40 px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-teal-200">CI/CD</span>
+                        </div>
+                        <h3 class="mt-5 text-xl font-light text-white">Deployable platform</h3>
+                        <p class="mt-3 text-sm leading-6 text-zinc-400">Development runs on dev branch; production releases are promoted through master and version tags.</p>
+                    </article>
                 </div>
             </div>
         </section>
@@ -312,9 +370,9 @@
 
         <section class="relative z-10 border-t border-white/10 bg-zinc-950 px-6 py-10">
             <div class="mx-auto grid max-w-6xl gap-px overflow-hidden border border-white/10 bg-white/10 text-sm md:grid-cols-3">
-                <div class="bg-zinc-950 p-5"><span class="text-zinc-100">Sector</span><br><span class="text-zinc-500">Boutique Lounges (Kigali)</span></div>
-                <div class="bg-zinc-950 p-5"><span class="text-zinc-100">Sector</span><br><span class="text-zinc-500">Private Hospitality (Kigali)</span></div>
-                <div class="bg-zinc-950 p-5"><span class="text-zinc-100">Sector</span><br><span class="text-zinc-500">Premium Retail (Kigali)</span></div>
+                <div class="bg-zinc-950 p-5"><span class="text-zinc-100">Pilot sector</span><br><span class="text-zinc-500">Boutique Lounges (Kigali)</span></div>
+                <div class="bg-zinc-950 p-5"><span class="text-zinc-100">Pilot sector</span><br><span class="text-zinc-500">Private Hospitality (Kigali)</span></div>
+                <div class="bg-zinc-950 p-5"><span class="text-zinc-100">Pilot sector</span><br><span class="text-zinc-500">Premium Retail (Kigali)</span></div>
             </div>
             <div class="mx-auto mt-8 flex max-w-6xl justify-end">
                 @include('partials.powered-by')

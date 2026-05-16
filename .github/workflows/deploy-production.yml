@@ -3,7 +3,9 @@ name: Build and deploy Vanta
 on:
   push:
     branches:
-      - dev-branch
+      - master
+    tags:
+      - 'v*'
   workflow_dispatch:
 
 permissions:
@@ -31,6 +33,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate production ref
+        run: |
+          if [ "$GITHUB_REF_TYPE" = "branch" ] && [ "$GITHUB_REF_NAME" != "master" ]; then
+            echo "Production deploys must run from master. Current ref: $GITHUB_REF_NAME"
+            exit 1
+          fi
+
+          if [ "$GITHUB_REF_TYPE" = "tag" ]; then
+            git fetch origin master --prune
+            if ! git merge-base --is-ancestor "$GITHUB_SHA" origin/master; then
+              echo "Release tag $GITHUB_REF_NAME does not point to a commit contained in master."
+              exit 1
+            fi
+          fi
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2

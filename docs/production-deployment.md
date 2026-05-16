@@ -1,6 +1,6 @@
 # Vanta Production Deployment
 
-This repo deploys `dev-branch` to `vanta.aphezis.com` through GitHub Actions.
+This repo uses `dev-branch` for active testing and `master` for production releases to `vanta.aphezis.com` through GitHub Actions.
 
 ## GitHub Secrets
 
@@ -60,22 +60,30 @@ Do not commit the MySQL password. Edit `/var/www/vanta-platform/shared/.env` on 
 
 Use `.env.production.example` as a checklist only. It intentionally contains placeholders and must not contain real secrets.
 
-## Release and Integration Management
+## Branch, Release, and Integration Management
 
-Two GitHub Actions workflows manage integration and releases:
+Use this branch model:
 
-- `Integration checks`: runs Composer validation, migrations, Laravel tests, Vite build, and route boot checks for pull requests.
-- `Release management`: manually creates annotated version tags and GitHub Releases for the private platform.
+- `dev-branch`: active development and testing.
+- Pull request from `dev-branch` into `master`: production review gate.
+- `master`: production source branch.
+- `v*` tags, such as `v1.0.0`: production release markers.
+
+Three GitHub Actions workflows manage integration, releases, and deployment:
+
+- `Integration checks`: runs Composer validation, migrations, Laravel tests, Vite build, and route boot checks on pushes to `dev-branch` and pull requests into `master`.
+- `Release management`: manually creates annotated version tags and GitHub Releases. Release targets must be `master` or a commit already contained in `master`.
+- `Build and deploy Vanta`: deploys only pushes to `master` and `v*` tags whose commits are contained in `master`.
 
 To create a private release:
 
 1. Open GitHub Actions.
 2. Run `Release management`.
 3. Enter a semantic version such as `v1.0.0`.
-4. Use `dev-branch` or a specific commit SHA as the target.
+4. Use `master` or a specific commit SHA already merged into `master` as the target.
 5. Add release notes for what changed.
 
-Tags are version markers. Deployment still happens from `dev-branch` through `Build and deploy Vanta`, so you can separate production deployment from private release bookkeeping.
+Tags are production release markers. Deployment no longer happens from `dev-branch`; it happens from `master` pushes or version tags created from `master`.
 
 ## Cloudflare
 
