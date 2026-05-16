@@ -11,7 +11,9 @@
             background: linear-gradient(135deg, #050505, #242426 54%, #09090b);
         }
 
-        .vanta-card-preview[data-design="matte_black"] {
+        .vanta-card-preview[data-design="matte_black"],
+        .vanta-card-preview[data-design="brushed_gold"],
+        .vanta-card-preview[data-design="graphite_steel"] {
             background: #050505;
         }
 
@@ -75,10 +77,22 @@
                         <div class="absolute inset-x-0 top-0 h-px bg-amber-200/60"></div>
                         <div id="cardPreview" data-design="matte_black" class="vanta-card-preview relative mx-auto aspect-[1.58/1] max-w-xl overflow-hidden border border-amber-200/40 shadow-2xl shadow-black/40">
                             <img
-                                id="previewReferenceImage"
+                                data-reference-image="matte_black"
                                 src="{{ asset('images/vanta-black-card-spec.png') }}"
                                 alt="Vanta Black metal card specifications"
                                 class="h-full w-full object-cover"
+                            >
+                            <img
+                                data-reference-image="brushed_gold"
+                                src="{{ asset('images/vanta-gold-card-spec.png') }}"
+                                alt="Vanta Gold metal card specifications"
+                                class="hidden h-full w-full object-cover"
+                            >
+                            <img
+                                data-reference-image="graphite_steel"
+                                src="{{ asset('images/vanta-titanium-card-spec.png') }}"
+                                alt="Vanta Titanium metal card specifications"
+                                class="hidden h-full w-full object-cover"
                             >
                             <div id="previewGeneratedCard" class="hidden h-full flex-col justify-between p-6">
                                 <div class="flex items-start justify-between">
@@ -134,6 +148,20 @@
                                 <img
                                     src="{{ asset('images/vanta-black-card-spec.png') }}"
                                     alt="Vanta Black card specifications"
+                                    class="block aspect-[1.58/1] w-full border border-white/10 object-cover"
+                                    loading="lazy"
+                                >
+                            @elseif ($key === 'brushed_gold')
+                                <img
+                                    src="{{ asset('images/vanta-gold-card-spec.png') }}"
+                                    alt="Vanta Gold card specifications"
+                                    class="block aspect-[1.58/1] w-full border border-white/10 object-cover"
+                                    loading="lazy"
+                                >
+                            @elseif ($key === 'graphite_steel')
+                                <img
+                                    src="{{ asset('images/vanta-titanium-card-spec.png') }}"
+                                    alt="Vanta Titanium card specifications"
                                     class="block aspect-[1.58/1] w-full border border-white/10 object-cover"
                                     loading="lazy"
                                 >
@@ -240,7 +268,7 @@
     <script>
         const cardDesigns = @json($designs);
         const preview = document.getElementById('cardPreview');
-        const previewReferenceImage = document.getElementById('previewReferenceImage');
+        const previewReferenceImages = document.querySelectorAll('[data-reference-image]');
         const previewGeneratedCard = document.getElementById('previewGeneratedCard');
         const previewName = document.getElementById('previewName');
         const previewFinish = document.getElementById('previewFinish');
@@ -280,9 +308,14 @@
             selectedDesign = designKey;
             designTypeInput.value = designKey;
             preview.dataset.design = designKey;
-            previewReferenceImage.classList.toggle('hidden', designKey !== 'matte_black');
-            previewGeneratedCard.classList.toggle('hidden', designKey === 'matte_black');
-            previewGeneratedCard.classList.toggle('flex', designKey !== 'matte_black');
+            const hasReferenceImage = ['matte_black', 'brushed_gold', 'graphite_steel'].includes(designKey);
+
+            previewReferenceImages.forEach((image) => {
+                image.classList.toggle('hidden', image.dataset.referenceImage !== designKey);
+            });
+
+            previewGeneratedCard.classList.toggle('hidden', hasReferenceImage);
+            previewGeneratedCard.classList.toggle('flex', ! hasReferenceImage);
             previewName.textContent = design.name;
             previewFinish.textContent = design.finish;
             previewPrice.textContent = design.price;
