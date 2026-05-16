@@ -12,7 +12,8 @@
         }
 
         .vanta-card-preview[data-design="matte_black"],
-        .vanta-card-preview[data-design="brushed_gold"] {
+        .vanta-card-preview[data-design="brushed_gold"],
+        .vanta-card-preview[data-design="graphite_steel"] {
             background: #050505;
         }
 
@@ -87,6 +88,12 @@
                                 alt="Vanta Gold metal card specifications"
                                 class="hidden h-full w-full object-cover"
                             >
+                            <img
+                                data-reference-image="graphite_steel"
+                                src="{{ asset('images/vanta-titanium-card-spec.png') }}"
+                                alt="Vanta Titanium metal card specifications"
+                                class="hidden h-full w-full object-cover"
+                            >
                             <div id="previewGeneratedCard" class="hidden h-full flex-col justify-between p-6">
                                 <div class="flex items-start justify-between">
                                     <span class="text-xs font-semibold uppercase tracking-[0.28em] text-amber-100">APHEZIS</span>
@@ -148,6 +155,13 @@
                                 <img
                                     src="{{ asset('images/vanta-gold-card-spec.png') }}"
                                     alt="Vanta Gold card specifications"
+                                    class="block aspect-[1.58/1] w-full border border-white/10 object-cover"
+                                    loading="lazy"
+                                >
+                            @elseif ($key === 'graphite_steel')
+                                <img
+                                    src="{{ asset('images/vanta-titanium-card-spec.png') }}"
+                                    alt="Vanta Titanium card specifications"
                                     class="block aspect-[1.58/1] w-full border border-white/10 object-cover"
                                     loading="lazy"
                                 >
@@ -294,7 +308,7 @@
             selectedDesign = designKey;
             designTypeInput.value = designKey;
             preview.dataset.design = designKey;
-            const hasReferenceImage = ['matte_black', 'brushed_gold'].includes(designKey);
+            const hasReferenceImage = ['matte_black', 'brushed_gold', 'graphite_steel'].includes(designKey);
 
             previewReferenceImages.forEach((image) => {
                 image.classList.toggle('hidden', image.dataset.referenceImage !== designKey);

@@ -371,7 +371,12 @@
                             class="aspect-[1.58/1] w-full border border-white/10 object-cover"
                             loading="lazy"
                         >
-                        <div class="aspect-[1.58/1] border border-white/10 bg-[linear-gradient(135deg,#111827,#52525b_48%,#09090b)]"></div>
+                        <img
+                            src="{{ asset('images/vanta-titanium-card-spec.png') }}"
+                            alt="Vanta Titanium card reference"
+                            class="aspect-[1.58/1] w-full border border-white/10 object-cover"
+                            loading="lazy"
+                        >
                     </div>
                 </div>
             </div>
