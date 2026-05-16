@@ -104,26 +104,55 @@
             <div class="mx-auto grid max-w-6xl gap-px overflow-hidden border border-white/10 bg-white/10 md:grid-cols-4">
                 <div class="bg-zinc-950 p-5">
                     <p class="text-xs uppercase tracking-[0.24em] text-amber-200">01</p>
-                    <p class="mt-3 text-lg font-light text-white">VIP profile</p>
-                    <div class="mt-5 h-2 w-3/4 bg-white/10"></div>
-                    <div class="mt-2 h-2 w-1/2 bg-amber-200/40"></div>
+                    <p class="mt-3 text-lg font-light text-white">Private Ledger</p>
+                    <div class="mt-5 border border-white/10 bg-white/[0.035] p-4">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <p class="font-mono text-sm uppercase tracking-[0.18em] text-white">Amina R.</p>
+                                <p class="mt-1 text-xs uppercase tracking-[0.2em] text-zinc-500">VIP 0014</p>
+                            </div>
+                            <span class="border border-amber-200/40 px-2 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-amber-200">Black Tier</span>
+                        </div>
+                        <div class="mt-4 grid gap-2 font-mono text-[0.7rem] uppercase tracking-[0.12em] text-zinc-400">
+                            <div class="flex items-center justify-between border-t border-white/10 pt-2">
+                                <span>Frequency</span>
+                                <span class="text-zinc-100">3x / week</span>
+                            </div>
+                            <div class="flex items-center justify-between border-t border-white/10 pt-2">
+                                <span>Spend</span>
+                                <span class="text-zinc-100">1M+ RWF</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="bg-zinc-950 p-5">
                     <p class="text-xs uppercase tracking-[0.24em] text-amber-200">02</p>
                     <p class="mt-3 text-lg font-light text-white">Magic link</p>
-                    <div class="mt-5 grid grid-cols-3 gap-2">
-                        <span class="h-8 border border-white/10 bg-white/[0.04]"></span>
-                        <span class="h-8 border border-amber-200/40 bg-amber-200/10"></span>
-                        <span class="h-8 border border-white/10 bg-white/[0.04]"></span>
+                    <div class="mt-5 mx-auto max-w-[10rem] border border-white/10 bg-black p-2 shadow-2xl shadow-black/30">
+                        <div class="min-h-36 border border-white/10 bg-zinc-950 px-3 py-4">
+                            <div class="mx-auto h-1 w-8 bg-white/15"></div>
+                            <p class="mt-6 text-center text-[0.65rem] uppercase tracking-[0.2em] text-zinc-500">Private Access</p>
+                            <button type="button" class="mt-5 w-full border border-amber-200/50 bg-amber-200/10 px-3 py-3 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-amber-100 shadow-[0_0_30px_rgba(251,191,36,0.12)]">
+                                Access Private Lounge
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <div class="bg-zinc-950 p-5">
                     <p class="text-xs uppercase tracking-[0.24em] text-amber-200">03</p>
-                    <p class="mt-3 text-lg font-light text-white">OTP request</p>
-                    <div class="mt-5 flex gap-2">
-                        <span class="size-9 border border-emerald-300/40 bg-emerald-300/10"></span>
-                        <span class="size-9 border border-emerald-300/40 bg-emerald-300/10"></span>
-                        <span class="size-9 border border-emerald-300/40 bg-emerald-300/10"></span>
+                    <p class="mt-3 text-lg font-light text-white">Secure Gateway</p>
+                    <div class="mt-5 border border-white/10 bg-white/[0.035] p-4">
+                        <p class="font-mono text-[0.68rem] uppercase tracking-[0.18em] text-zinc-500">Verify identity</p>
+                        <div class="mt-4 grid grid-cols-4 gap-2">
+                            <span class="grid size-10 place-items-center border border-emerald-300/35 bg-emerald-300/10 font-mono text-lg text-emerald-100">•</span>
+                            <span class="grid size-10 place-items-center border border-emerald-300/35 bg-emerald-300/10 font-mono text-lg text-emerald-100">•</span>
+                            <span class="grid size-10 place-items-center border border-emerald-300/35 bg-emerald-300/10 font-mono text-lg text-emerald-100">•</span>
+                            <span class="grid size-10 place-items-center border border-emerald-300/35 bg-emerald-300/10 font-mono text-lg text-emerald-100">•</span>
+                        </div>
+                        <div class="mt-4 inline-flex items-center gap-2 border border-emerald-300/30 bg-emerald-300/10 px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-emerald-100">
+                            <span>✓</span>
+                            <span>Identity Verified</span>
+                        </div>
                     </div>
                 </div>
                 <div class="bg-zinc-950 p-5">
@@ -372,8 +401,8 @@
                             loading="lazy"
                         >
                         <img
-                            src="{{ asset('images/vanta-titanium-card-spec.png') }}"
-                            alt="Vanta Titanium card reference"
+                            src="{{ asset('images/vanta-graphite-steel-card-spec.png') }}"
+                            alt="Vanta Graphite Steel card reference"
                             class="aspect-[1.58/1] w-full border border-white/10 object-cover"
                             loading="lazy"
                         >

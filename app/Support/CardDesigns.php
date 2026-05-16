@@ -13,6 +13,7 @@ class CardDesigns
             'matte_black' => 'Matte Black Steel',
             'brushed_gold' => 'Brushed Gold Steel',
             'graphite_steel' => 'Graphite Steel',
+            'titanium_steel' => 'Titanium Steel',
             'custom' => 'Custom design request',
         ];
     }
@@ -20,7 +21,7 @@ class CardDesigns
     public static function fixedUnitPrice(string $design): ?int
     {
         return match ($design) {
-            'matte_black', 'brushed_gold', 'graphite_steel' => 15,
+            'matte_black', 'brushed_gold', 'graphite_steel', 'titanium_steel' => 15,
             default => null,
         };
     }
