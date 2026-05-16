@@ -11,6 +11,10 @@
             background: linear-gradient(135deg, #050505, #242426 54%, #09090b);
         }
 
+        .vanta-card-preview[data-design="matte_black"] {
+            background: #050505;
+        }
+
         .vanta-card-preview[data-design="brushed_gold"],
         .vanta-card-swatch[data-design="brushed_gold"] {
             background: linear-gradient(135deg, #4a320e, #d6a647 46%, #120d05);
@@ -69,8 +73,14 @@
                 <div class="border border-white/10 bg-white/[0.05] p-4 shadow-2xl shadow-black/30 backdrop-blur">
                     <div class="relative overflow-hidden border border-white/10 bg-zinc-950 p-5 sm:p-7">
                         <div class="absolute inset-x-0 top-0 h-px bg-amber-200/60"></div>
-                        <div id="cardPreview" data-design="matte_black" class="vanta-card-preview relative mx-auto aspect-[1.58/1] max-w-xl border border-amber-200/40 p-6 shadow-2xl shadow-black/40">
-                            <div class="flex h-full flex-col justify-between">
+                        <div id="cardPreview" data-design="matte_black" class="vanta-card-preview relative mx-auto aspect-[1.58/1] max-w-xl overflow-hidden border border-amber-200/40 shadow-2xl shadow-black/40">
+                            <img
+                                id="previewReferenceImage"
+                                src="{{ asset('images/vanta-black-card-spec.png') }}"
+                                alt="Vanta Black metal card specifications"
+                                class="h-full w-full object-cover"
+                            >
+                            <div id="previewGeneratedCard" class="hidden h-full flex-col justify-between p-6">
                                 <div class="flex items-start justify-between">
                                     <span class="text-xs font-semibold uppercase tracking-[0.28em] text-amber-100">APHEZIS</span>
                                     <span class="grid size-10 place-items-center border border-amber-100/50 text-[10px] uppercase tracking-[0.18em] text-amber-100">NFC</span>
@@ -120,7 +130,16 @@
                             data-card-option="{{ $key }}"
                             class="vanta-design-option group border border-white/10 bg-white/[0.04] p-5 text-left transition hover:border-white/25 {{ $key === 'matte_black' ? 'is-selected' : '' }}"
                         >
-                            <span data-design="{{ $key }}" class="vanta-card-swatch block aspect-[1.58/1] border border-white/10"></span>
+                            @if ($key === 'matte_black')
+                                <img
+                                    src="{{ asset('images/vanta-black-card-spec.png') }}"
+                                    alt="Vanta Black card specifications"
+                                    class="block aspect-[1.58/1] w-full border border-white/10 object-cover"
+                                    loading="lazy"
+                                >
+                            @else
+                                <span data-design="{{ $key }}" class="vanta-card-swatch block aspect-[1.58/1] border border-white/10"></span>
+                            @endif
                             <span class="mt-5 block text-lg font-light text-white">{{ $design['name'] }}</span>
                             <span class="mt-2 block text-sm leading-6 text-zinc-400">{{ $design['description'] }}</span>
                             <span class="mt-4 block text-sm font-semibold text-amber-200">{{ $design['price'] }}</span>
@@ -221,6 +240,8 @@
     <script>
         const cardDesigns = @json($designs);
         const preview = document.getElementById('cardPreview');
+        const previewReferenceImage = document.getElementById('previewReferenceImage');
+        const previewGeneratedCard = document.getElementById('previewGeneratedCard');
         const previewName = document.getElementById('previewName');
         const previewFinish = document.getElementById('previewFinish');
         const previewPrice = document.getElementById('previewPrice');
@@ -259,6 +280,9 @@
             selectedDesign = designKey;
             designTypeInput.value = designKey;
             preview.dataset.design = designKey;
+            previewReferenceImage.classList.toggle('hidden', designKey !== 'matte_black');
+            previewGeneratedCard.classList.toggle('hidden', designKey === 'matte_black');
+            previewGeneratedCard.classList.toggle('flex', designKey !== 'matte_black');
             previewName.textContent = design.name;
             previewFinish.textContent = design.finish;
             previewPrice.textContent = design.price;
