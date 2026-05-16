@@ -38,6 +38,14 @@ class CardInquiryController extends Controller
                     'description' => 'Quiet and technical, built for brands that want a restrained command-center look.',
                     'features' => ['Graphite face', 'Subtle engraving', 'NFC enabled'],
                 ],
+                'titanium_steel' => [
+                    'name' => 'Titanium Steel',
+                    'finish' => 'Brushed titanium face',
+                    'price' => 'Starting at $15 / unit',
+                    'accent' => 'titanium',
+                    'description' => 'A lighter industrial finish for venues that want a crisp, technical metal presence.',
+                    'features' => ['Titanium face', 'Brushed texture', 'NFC enabled'],
+                ],
                 'custom' => [
                     'name' => 'Custom Design Request',
                     'finish' => 'Quoted fabrication',

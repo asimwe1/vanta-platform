@@ -372,8 +372,8 @@
                             loading="lazy"
                         >
                         <img
-                            src="{{ asset('images/vanta-titanium-card-spec.png') }}"
-                            alt="Vanta Titanium card reference"
+                            src="{{ asset('images/vanta-graphite-steel-card-spec.png') }}"
+                            alt="Vanta Graphite Steel card reference"
                             class="aspect-[1.58/1] w-full border border-white/10 object-cover"
                             loading="lazy"
                         >

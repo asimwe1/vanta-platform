@@ -13,7 +13,8 @@
 
         .vanta-card-preview[data-design="matte_black"],
         .vanta-card-preview[data-design="brushed_gold"],
-        .vanta-card-preview[data-design="graphite_steel"] {
+        .vanta-card-preview[data-design="graphite_steel"],
+        .vanta-card-preview[data-design="titanium_steel"] {
             background: #050505;
         }
 
@@ -25,6 +26,11 @@
         .vanta-card-preview[data-design="graphite_steel"],
         .vanta-card-swatch[data-design="graphite_steel"] {
             background: linear-gradient(135deg, #111827, #52525b 48%, #09090b);
+        }
+
+        .vanta-card-preview[data-design="titanium_steel"],
+        .vanta-card-swatch[data-design="titanium_steel"] {
+            background: linear-gradient(135deg, #27272a, #a1a1aa 48%, #18181b);
         }
 
         .vanta-card-preview[data-design="custom"],
@@ -90,8 +96,14 @@
                             >
                             <img
                                 data-reference-image="graphite_steel"
+                                src="{{ asset('images/vanta-graphite-steel-card-spec.png') }}"
+                                alt="Vanta Graphite Steel metal card specifications"
+                                class="hidden h-full w-full object-cover"
+                            >
+                            <img
+                                data-reference-image="titanium_steel"
                                 src="{{ asset('images/vanta-titanium-card-spec.png') }}"
-                                alt="Vanta Titanium metal card specifications"
+                                alt="Vanta Titanium Steel metal card specifications"
                                 class="hidden h-full w-full object-cover"
                             >
                             <div id="previewGeneratedCard" class="hidden h-full flex-col justify-between p-6">
@@ -160,8 +172,15 @@
                                 >
                             @elseif ($key === 'graphite_steel')
                                 <img
+                                    src="{{ asset('images/vanta-graphite-steel-card-spec.png') }}"
+                                    alt="Vanta Graphite Steel card specifications"
+                                    class="block aspect-[1.58/1] w-full border border-white/10 object-cover"
+                                    loading="lazy"
+                                >
+                            @elseif ($key === 'titanium_steel')
+                                <img
                                     src="{{ asset('images/vanta-titanium-card-spec.png') }}"
-                                    alt="Vanta Titanium card specifications"
+                                    alt="Vanta Titanium Steel card specifications"
                                     class="block aspect-[1.58/1] w-full border border-white/10 object-cover"
                                     loading="lazy"
                                 >
@@ -308,7 +327,7 @@
             selectedDesign = designKey;
             designTypeInput.value = designKey;
             preview.dataset.design = designKey;
-            const hasReferenceImage = ['matte_black', 'brushed_gold', 'graphite_steel'].includes(designKey);
+            const hasReferenceImage = ['matte_black', 'brushed_gold', 'graphite_steel', 'titanium_steel'].includes(designKey);
 
             previewReferenceImages.forEach((image) => {
                 image.classList.toggle('hidden', image.dataset.referenceImage !== designKey);
