@@ -42,15 +42,21 @@ class CardInquiryTest extends TestCase
         ]);
 
         Mail::assertSent(CardInquirySubmitted::class, function (CardInquirySubmitted $mail): bool {
+            $replyTo = $mail->envelope()->replyTo;
+
             return $mail->hasTo(config('mail.enquiries.address'))
                 && ! $mail->senderCopy
-                && $mail->inquiry->email === 'amina@example.com';
+                && $mail->inquiry->email === 'amina@example.com'
+                && $replyTo[0]->address === 'amina@example.com';
         });
 
         Mail::assertSent(CardInquirySubmitted::class, function (CardInquirySubmitted $mail): bool {
+            $replyTo = $mail->envelope()->replyTo;
+
             return $mail->hasTo('amina@example.com')
                 && $mail->senderCopy
-                && $mail->inquiry->company_name === 'Essence Kigali';
+                && $mail->inquiry->company_name === 'Essence Kigali'
+                && $replyTo[0]->address === config('mail.enquiries.address');
         });
     }
 }

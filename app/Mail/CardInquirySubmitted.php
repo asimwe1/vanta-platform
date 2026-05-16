@@ -26,11 +26,12 @@ class CardInquirySubmitted extends Mailable
     public function envelope(): Envelope
     {
         $prefix = $this->senderCopy ? 'Copy received' : 'New request';
+        $replyTo = $this->senderCopy
+            ? [new Address(config('mail.enquiries.address'), config('mail.from.name'))]
+            : [new Address($this->inquiry->email, $this->inquiry->contact_name)];
 
         return new Envelope(
-            replyTo: [
-                new Address($this->inquiry->email, $this->inquiry->contact_name),
-            ],
+            replyTo: $replyTo,
             subject: $prefix . ': ' . str($this->inquiry->intent)->headline() . ' from ' . $this->inquiry->company_name,
         );
     }
