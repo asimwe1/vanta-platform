@@ -365,7 +365,12 @@
                             class="aspect-[1.58/1] w-full border border-white/10 object-cover"
                             loading="lazy"
                         >
-                        <div class="aspect-[1.58/1] border border-white/10 bg-[linear-gradient(135deg,#4a320e,#d6a647_46%,#120d05)]"></div>
+                        <img
+                            src="{{ asset('images/vanta-gold-card-spec.png') }}"
+                            alt="Vanta Gold card reference"
+                            class="aspect-[1.58/1] w-full border border-white/10 object-cover"
+                            loading="lazy"
+                        >
                         <div class="aspect-[1.58/1] border border-white/10 bg-[linear-gradient(135deg,#111827,#52525b_48%,#09090b)]"></div>
                     </div>
                 </div>
