@@ -115,4 +115,8 @@ return [
         'name' => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
     ],
 
+    'enquiries' => [
+        'address' => env('MAIL_ENQUIRIES_ADDRESS', 'enquiries@aphezis.com'),
+    ],
+
 ];

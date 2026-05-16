@@ -2,8 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\Mail\CardInquirySubmitted;
 use App\Models\CardInquiry;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
 class CardInquiryTest extends TestCase
@@ -12,6 +14,8 @@ class CardInquiryTest extends TestCase
 
     public function test_card_inquiry_can_be_submitted(): void
     {
+        Mail::fake();
+
         $response = $this->post(route('cards.inquiry.store'), [
             'company_name' => 'Essence Kigali',
             'contact_name' => 'Amina R.',
@@ -36,5 +40,17 @@ class CardInquiryTest extends TestCase
             'intent' => 'inquiry',
             'status' => 'new',
         ]);
+
+        Mail::assertSent(CardInquirySubmitted::class, function (CardInquirySubmitted $mail): bool {
+            return $mail->hasTo(config('mail.enquiries.address'))
+                && ! $mail->senderCopy
+                && $mail->inquiry->email === 'amina@example.com';
+        });
+
+        Mail::assertSent(CardInquirySubmitted::class, function (CardInquirySubmitted $mail): bool {
+            return $mail->hasTo('amina@example.com')
+                && $mail->senderCopy
+                && $mail->inquiry->company_name === 'Essence Kigali';
+        });
     }
 }

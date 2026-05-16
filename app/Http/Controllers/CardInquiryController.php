@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CardInquirySubmitted;
 use App\Models\CardInquiry;
 use App\Support\CardDesigns;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class CardInquiryController extends Controller
@@ -71,7 +73,13 @@ class CardInquiryController extends Controller
             'notes' => ['nullable', 'string', 'max:2000'],
         ]);
 
-        CardInquiry::create($validated + ['status' => 'new']);
+        $inquiry = CardInquiry::create($validated + ['status' => 'new']);
+
+        Mail::to(config('mail.enquiries.address'))
+            ->send(new CardInquirySubmitted($inquiry));
+
+        Mail::to($inquiry->email)
+            ->send(new CardInquirySubmitted($inquiry, senderCopy: true));
 
         return redirect()
             ->route('cards.index')
