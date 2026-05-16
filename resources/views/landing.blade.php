@@ -236,41 +236,42 @@
 
                 <div class="mt-10 grid gap-4 lg:grid-cols-3">
                     <article class="border border-white/10 bg-white/[0.04] p-6">
-                        <div class="flex items-center justify-between">
-                            <p class="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200">Tier I</p>
+                        <div class="flex items-start justify-between gap-3">
+                            <p class="min-w-0 text-xs font-semibold uppercase leading-5 tracking-[0.24em] text-amber-200">FOUNDING OPERATOR TIER</p>
                             <span class="border border-white/10 px-2 py-1 text-xs text-zinc-400">20 VIPs</span>
                         </div>
                         <h3 class="mt-4 text-2xl font-light text-white">Vanta One</h3>
-                        <p class="mt-2 text-sm text-zinc-400">Boutique elite infrastructure</p>
+                        <p class="mt-2 text-sm leading-6 text-zinc-400">Intentionally capped for early-adopting boutique venues in Kigali.</p>
                         <div class="mt-6 space-y-3 text-sm text-zinc-300">
                             <p class="border border-white/10 bg-white/[0.04] px-3 py-2">20 VIP Slots</p>
-                            <p class="border border-white/10 bg-white/[0.04] px-3 py-2">Email OTP and magic links</p>
+                            <p class="border border-white/10 bg-white/[0.04] px-3 py-2">Email OTP & Magic Links</p>
                             <p class="border border-white/10 bg-white/[0.04] px-3 py-2">Monthly Pulse Brief</p>
+                            <p class="border border-white/10 bg-white/[0.04] px-3 py-2">Powered by ApheZis Visible</p>
                         </div>
-                        <p class="mt-5 text-xs uppercase tracking-[0.22em] text-zinc-500">Powered by ApheZis visible</p>
-                        <p class="mt-6 text-3xl font-light text-white">$50<span class="text-sm text-zinc-500"> / month guide</span></p>
+                        <p class="mt-6 text-3xl font-light text-white">$50<span class="text-sm text-zinc-500"> / mo</span></p>
                     </article>
                     <article class="border border-amber-300/40 bg-amber-300/[0.08] p-6 shadow-2xl shadow-amber-950/20">
-                        <div class="flex items-center justify-between">
-                            <p class="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200">Tier II</p>
+                        <div class="flex items-start justify-between gap-3">
+                            <p class="min-w-0 text-xs font-semibold uppercase leading-5 tracking-[0.24em] text-amber-200">PRIVATE ROLLOUT TIER</p>
                             <span class="border border-amber-200/30 px-2 py-1 text-xs text-amber-100">125 VIPs</span>
                         </div>
                         <h3 class="mt-4 text-2xl font-light text-white">Vanta Luxe</h3>
-                        <p class="mt-2 text-sm text-zinc-300">Private-label business intelligence</p>
+                        <p class="mt-2 text-sm leading-6 text-zinc-300">For established establishments integrating automated retention infrastructure.</p>
                         <div class="mt-6 space-y-3 text-sm text-zinc-100">
+                            <p class="border border-amber-200/20 bg-amber-200/10 px-3 py-2">125 VIP Slots</p>
                             <p class="border border-amber-200/20 bg-amber-200/10 px-3 py-2">Full White-Labeling</p>
                             <p class="border border-amber-200/20 bg-amber-200/10 px-3 py-2">Live Vanta View Dashboard</p>
-                            <p class="border border-amber-200/20 bg-amber-200/10 px-3 py-2">Churn-risk and velocity alerts</p>
+                            <p class="border border-amber-200/20 bg-amber-200/10 px-3 py-2">Churn-Risk & Velocity Alerts</p>
                         </div>
-                        <p class="mt-6 text-3xl font-light text-white">$200<span class="text-sm text-zinc-500"> / month guide</span></p>
+                        <p class="mt-6 text-3xl font-light text-white">$200<span class="text-sm text-zinc-500"> / mo</span></p>
                     </article>
                     <article class="border border-white/10 bg-white/[0.04] p-6">
-                        <div class="flex items-center justify-between">
-                            <p class="text-xs font-semibold uppercase tracking-[0.24em] text-amber-200">Tier III</p>
+                        <div class="flex items-start justify-between gap-3">
+                            <p class="min-w-0 text-xs font-semibold uppercase leading-5 tracking-[0.24em] text-amber-200">INVITATION-ONLY DEPLOYMENT</p>
                             <span class="border border-white/10 px-2 py-1 text-xs text-zinc-400">500 base</span>
                         </div>
                         <h3 class="mt-4 text-2xl font-light text-white">Vanta Noir</h3>
-                        <p class="mt-2 text-sm text-zinc-400">Sovereign enterprise layer</p>
+                        <p class="mt-2 text-sm leading-6 text-zinc-400">Reserved for multi-location hospitality groups and sovereign institutions.</p>
                         <div class="mt-6 grid gap-2">
                             <div class="flex items-center gap-2">
                                 <span class="size-3 bg-teal-200"></span>
