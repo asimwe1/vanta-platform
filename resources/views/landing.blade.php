@@ -129,7 +129,12 @@
                 <div class="bg-zinc-950 p-5">
                     <p class="text-xs uppercase tracking-[0.24em] text-amber-200">04</p>
                     <p class="mt-3 text-lg font-light text-white">Hardware Assets</p>
-                    <div class="mt-5 aspect-[1.58/1] border border-amber-200/30 bg-[linear-gradient(135deg,#050505,#262626_45%,#0b0b0b)]"></div>
+                    <img
+                        src="{{ asset('images/vanta-black-card-spec.png') }}"
+                        alt="Vanta Black metal card specifications"
+                        class="mt-5 aspect-[1.58/1] w-full border border-amber-200/30 object-cover"
+                        loading="lazy"
+                    >
                 </div>
             </div>
         </section>
@@ -347,21 +352,19 @@
                 </div>
 
                 <div class="grid gap-4">
-                    <div class="relative aspect-[1.58/1] overflow-hidden border border-amber-200/30 bg-[linear-gradient(135deg,#060606,#262626_45%,#0b0b0b)] p-6 shadow-2xl shadow-black/40">
-                        <div class="absolute inset-x-0 top-0 h-px bg-amber-200/60"></div>
-                        <div class="flex h-full flex-col justify-between">
-                            <div class="flex items-start justify-between">
-                                <span class="text-xs uppercase tracking-[0.28em] text-amber-200">APHEZIS</span>
-                                <span class="size-9 border border-amber-200/50"></span>
-                            </div>
-                            <div>
-                                <p class="text-2xl font-light tracking-[0.18em] text-white">VANTA BLACK</p>
-                                <p class="mt-2 text-xs uppercase tracking-[0.24em] text-zinc-400">NFC enabled · 304 steel · private access</p>
-                            </div>
-                        </div>
-                    </div>
+                    <img
+                        src="{{ asset('images/vanta-black-card-spec.png') }}"
+                        alt="Vanta Black 304 stainless steel card with NFC private access specifications"
+                        class="aspect-[1.58/1] w-full border border-amber-200/30 object-cover shadow-2xl shadow-black/40"
+                        loading="lazy"
+                    >
                     <div class="grid grid-cols-3 gap-3">
-                        <div class="aspect-[1.58/1] border border-white/10 bg-[linear-gradient(135deg,#050505,#242426_54%,#09090b)]"></div>
+                        <img
+                            src="{{ asset('images/vanta-black-card-spec.png') }}"
+                            alt="Vanta Black card reference"
+                            class="aspect-[1.58/1] w-full border border-white/10 object-cover"
+                            loading="lazy"
+                        >
                         <div class="aspect-[1.58/1] border border-white/10 bg-[linear-gradient(135deg,#4a320e,#d6a647_46%,#120d05)]"></div>
                         <div class="aspect-[1.58/1] border border-white/10 bg-[linear-gradient(135deg,#111827,#52525b_48%,#09090b)]"></div>
                     </div>
